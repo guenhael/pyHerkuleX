@@ -1,0 +1,23 @@
+======================================
+Various functions
+======================================
+
+simultaneous_control
+======================================
+
+.. autofunction:: pyherkulex.simultaneous_control
+
+independent_control
+======================================
+
+.. autofunction:: pyherkulex.independent_control
+
+find
+======================================
+
+.. autofunction:: pyherkulex.find
+
+serial
+======================================
+
+.. autofunction:: pyherkulex.serial

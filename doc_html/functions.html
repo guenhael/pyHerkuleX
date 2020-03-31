@@ -1,0 +1,444 @@
+
+
+<!DOCTYPE html>
+<html lang="" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Various functions &mdash; pyherkulex 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="_static/pyherkulex_favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'1.0.0',
+              LANGUAGE:'',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: ''
+          };
+      </script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="Constants" href="constants.html" />
+    <link rel="prev" title="Servo class" href="servo.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0079b3" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/pyherkulex_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Get started</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="servo.html">Servo class</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#simultaneous-control">simultaneous_control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#independent-control">independent_control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#find">find</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#serial">serial</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exception.html">Exception class</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data.html">HerkuleX data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyherkulex</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Various functions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="various-functions">
+<h1>Various functions<a class="headerlink" href="#various-functions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="simultaneous-control">
+<h2>simultaneous_control<a class="headerlink" href="#simultaneous-control" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyherkulex.simultaneous_control">
+<tt class="descname">simultaneous_control</tt><big>(</big><em>time</em>, <em>*instructions</em><big>)</big><a class="headerlink" href="#pyherkulex.simultaneous_control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send control instructions to several servos at the same time. All servos have
+the same operating goal time to complete their instruction.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>time</strong> (<em>float</em>) &#8211; Operating goal time.</li>
+<li><strong>*instructions</strong> (<em>tuples</em>) &#8211; <p>Each control instruction is stored in a tuple containing the following items:</p>
+<blockquote>
+<div><ul>
+<li><em>servo</em>, an instance of <a class="reference internal" href="servo.html#pyherkulex.Servo" title="pyherkulex.Servo"><tt class="xref py py-class docutils literal"><span class="pre">pyherkulex.Servo</span></tt></a></li>
+<li><em>goal value</em>, desired position value or desired speed value, depending on <em>control mode</em>, or <tt class="docutils literal"><span class="pre">None</span></tt> for ignoring this control instruction</li>
+<li><em>control mode</em> (optional), among the <a class="reference internal" href="constants.html#control-constants"><em>position and speed control constants</em></a> (default is <tt class="xref py py-obj docutils literal"><span class="pre">pyherkulex.CONTROL_POSITION_DEGREE</span></tt>)</li>
+<li><em>led color</em> (optional), integer among the <a class="reference internal" href="constants.html#led-constants"><em>LED color constants</em></a> (default is <tt class="xref py py-obj docutils literal"><span class="pre">pyherkulex.LED_OFF</span></tt>)</li>
+<li><em>stop</em> (optional), either <tt class="docutils literal"><span class="pre">True</span></tt> to stop servo at current position or <tt class="docutils literal"><span class="pre">False</span></tt> (default) to continue control instructions</li>
+<li><em>velocity overide</em> - VOR (optional), either <tt class="docutils literal"><span class="pre">True</span></tt> (default) to enable VOR or <tt class="docutils literal"><span class="pre">False</span></tt> to disable VOR (if the servo model allows to disable VOR)</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Each servo must have its control mode enabled before sending control instructions.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><p class="first">Sending simulaneous instructions to two servos with respective IDs 0x01 and 0x02.
+The first servo has its position set to -10 degree with its LED switched off.
+The second servo has its speed set to 3.5 degree/second with its LED lighting green.
+Both servos have the same operating goal time of 1.5 second.</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">pyherkulex</span> <span class="kn">as</span> <span class="nn">hx</span>
+
+<span class="n">srv1</span> <span class="o">=</span> <span class="n">hx</span><span class="o">.</span><span class="n">Servo</span><span class="p">(</span><span class="mh">0x01</span><span class="p">)</span>
+<span class="n">srv2</span> <span class="o">=</span> <span class="n">hx</span><span class="o">.</span><span class="n">Servo</span><span class="p">(</span><span class="mh">0x02</span><span class="p">)</span>
+
+<span class="n">srv1</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">srv2</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">hx</span><span class="o">.</span><span class="n">MODE_CONTROL</span>
+
+<span class="n">hx</span><span class="o">.</span><span class="n">simultaneous_control</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="p">(</span><span class="n">srv1</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.0</span><span class="p">),</span>
+                             <span class="p">(</span><span class="n">srv2</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="n">hx</span><span class="o">.</span><span class="n">SPEED_DEGREE</span><span class="p">,</span> <span class="n">hx</span><span class="o">.</span><span class="n">LED_GREEN</span><span class="p">))</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="independent-control">
+<h2>independent_control<a class="headerlink" href="#independent-control" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyherkulex.independent_control">
+<tt class="descname">independent_control</tt><big>(</big><em>*instructions</em><big>)</big><a class="headerlink" href="#pyherkulex.independent_control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send control instructions to several servos at the same time. Each servo has
+its own goal time to complete its instruction.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*instructions</strong> (<em>tuples</em>) &#8211; <p>Each instruction is stored in a tuple containing the following items:</p>
+<blockquote>
+<div><ul class="simple">
+<li><em>goal time</em>, the operating time to complete the instruction</li>
+<li><em>servo</em>, an instance of <a class="reference internal" href="servo.html#pyherkulex.Servo" title="pyherkulex.Servo"><tt class="xref py py-class docutils literal"><span class="pre">pyherkulex.Servo</span></tt></a></li>
+<li><em>goal value</em>, desired position value or desired speed value, depending on <em>control mode</em>, or <tt class="docutils literal"><span class="pre">None</span></tt> for ignoring this control instruction</li>
+<li><em>control mode</em> (optional), among the <a class="reference internal" href="constants.html#control-constants"><em>position and speed control constants</em></a> (default is <tt class="xref py py-obj docutils literal"><span class="pre">pyherkulex.CONTROL_POSITION_DEGREE</span></tt>)</li>
+<li><em>led color</em> (optional), integer among the <a class="reference internal" href="constants.html#led-constants"><em>LED color constants</em></a> (default is <tt class="xref py py-obj docutils literal"><span class="pre">pyherkulex.LED_OFF</span></tt>)</li>
+<li><em>stop</em> (optional), either <tt class="docutils literal"><span class="pre">True</span></tt> to stop servo at current position or <tt class="docutils literal"><span class="pre">False</span></tt> (default) to continue control instructions</li>
+<li><em>velocity overide</em> - VOR (optional), either <tt class="docutils literal"><span class="pre">True</span></tt> (default) to enable VOR or <tt class="docutils literal"><span class="pre">False</span></tt> to disable VOR (if the servo model allows to disable VOR)</li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Each servo must have its control mode enabled before sending control instructions.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><p class="first">Sending independant control instructions to two servos with respective IDs 0x01 and 0x02.
+The first servo has 1.5 second to reach a prescribed position set to -10 degree and its LED switched off.
+The second servo has 2.0 second to reach a prescribed speed set to 3.5 degree/second and its LED lighting bleu.</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">pyherkulex</span> <span class="kn">as</span> <span class="nn">hx</span>
+
+<span class="n">srv1</span> <span class="o">=</span> <span class="n">hx</span><span class="o">.</span><span class="n">Servo</span><span class="p">(</span><span class="mh">0x01</span><span class="p">)</span>
+<span class="n">srv2</span> <span class="o">=</span> <span class="n">hx</span><span class="o">.</span><span class="n">Servo</span><span class="p">(</span><span class="mh">0x02</span><span class="p">)</span>
+
+<span class="n">srv1</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">srv2</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">hx</span><span class="o">.</span><span class="n">MODE_CONTROL</span>
+
+<span class="n">hx</span><span class="o">.</span><span class="n">independent_instructions</span><span class="p">((</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">srv1</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.0</span><span class="p">),</span>
+                            <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">srv2</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="n">hx</span><span class="o">.</span><span class="n">SPEED_DEGREE</span><span class="p">,</span> <span class="n">hx</span><span class="o">.</span><span class="n">LED_BLUE</span><span class="p">))</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="find">
+<h2>find<a class="headerlink" href="#find" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyherkulex.find">
+<tt class="descname">find</tt><big>(</big><em>number=None</em>, <em>port=None</em>, <em>baudrate=(57600</em>, <em>115200</em>, <em>200000</em>, <em>250000</em>, <em>400000</em>, <em>500000</em>, <em>666666</em>, <em>1000000)</em>, <em>timeout=0.05</em>, <em>fast=False</em>, <em>verbose=True</em><big>)</big><a class="headerlink" href="#pyherkulex.find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scan all possible ID with each supported baud rate
+and return a dictionary which maps connected servo IDs to tuples
+containing HerkuleX servo model and baudrate.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>number</strong> (<em>int</em>) &#8211; Number of servos supposed to be connected to serial bus.</li>
+<li><strong>port</strong> (<em>str</em>) &#8211; Serial port name.
+If not specified, the considered value will be
+<tt class="docutils literal"><span class="pre">'COM1'</span></tt> if using Windows,
+the first <tt class="docutils literal"><span class="pre">'/dev/ttyUSB*'</span></tt> or <tt class="docutils literal"><span class="pre">'/dev/ttyS*'</span></tt> found if using Linux or
+the first <tt class="docutils literal"><span class="pre">'/dev/tty.usbserial-*'</span></tt> found if using OSx.</li>
+<li><strong>baudrate</strong> (<em>int</em>) &#8211; Baud rate, or tuple of several baud rate values
+to be successively tested.</li>
+<li><strong>timeout</strong> (<em>float</em>) &#8211; Set serial read timeout value.</li>
+<li><strong>fast</strong> (<em>bool</em>) &#8211; For each baude rate, incremental scanning is
+performed on all possible IDs separately only if any signal is
+received to a prior call broadcasted to all servo IDs together.</li>
+<li><strong>verbose</strong> (<em>bool</em>) &#8211; Print scanning progression.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Dictionary mapping connected servo IDs to tuples
+containing two items each (servo model, baudrate).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="serial">
+<h2>serial<a class="headerlink" href="#serial" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyherkulex.serial">
+<tt class="descname">serial</tt><big>(</big><em>port=None</em>, <em>baudrate=115200</em>, <em>timeout=1.0</em><big>)</big><a class="headerlink" href="#pyherkulex.serial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open the serial port where HerkuleX servo communication
+bus is attached.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>port</strong> (<em>str</em>) &#8211; Serial port name.
+If not specified, its considered value will be
+<tt class="docutils literal"><span class="pre">'COM1'</span></tt> if using Windows,
+the first <tt class="docutils literal"><span class="pre">'/dev/ttyUSB*'</span></tt> or <tt class="docutils literal"><span class="pre">'/dev/ttyS*'</span></tt> found if using Linux or
+the first <tt class="docutils literal"><span class="pre">'/dev/tty.usbserial-*'</span></tt> found if using OSx.</li>
+<li><strong>baudrate</strong> (<em>int</em>) &#8211; Set baud rate value among the possible
+values supported by the servo model.</li>
+<li><strong>timeout</strong> (<em>float</em>) &#8211; Set a read timeout value.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Connection instance of <tt class="xref py py-obj docutils literal"><span class="pre">serial.Serial</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">serial.Serial</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Raises SerialException:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first last">In case the device can not be found or can not be configured.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="constants.html" class="btn btn-neutral float-right" title="Constants" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="servo.html" class="btn btn-neutral float-left" title="Servo class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        
+        &copy; <a href="copyright.html">Copyright</a> 2020, Guenhael LE QUILLIEC
+      <span class="lastupdated">
+        Last updated on Mar 31, 2020.
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

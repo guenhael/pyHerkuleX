@@ -1,0 +1,26 @@
+======================================
+HerkuleX data
+======================================
+
+
+PDF manuals
+======================================
+
+ - :download:`Herkulex DRS-0101 & DRS-0201 manual <downloads/Herkulex_Manual_0101_and_0201_20140218.pdf>`
+ - :download:`Herkulex DRS-0401 manual <downloads/Herkulex_Manual_0401_20131202.pdf>`
+ - :download:`Herkulex DRS-0402 manual <downloads/Herkulex_Manual_0402_20140804.pdf>`
+ - :download:`Herkulex DRS-0601 manual <downloads/Herkulex_Manual_0601_20140804.pdf>`
+ - :download:`Herkulex DRS-0602 manual <downloads/Herkulex_Manual_0602_20140804.pdf>`
+
+
+CAD files
+======================================
+
+ - :download:`Herkulex DRS-0101 & DRS-0201 STEP and IGES 3D files <downloads/Herkulex_3D_data_0101_and_0201.zip>`
+ - :download:`Herkulex DRS-0401 & DRS-0402 STEP and IGES 3D files <downloads/Herkulex_3D_data_040X.zip>`
+ - :download:`Herkulex DRS-0601 & DRS-0602 STEP and IGES 3D files <downloads/Herkulex_3D_data_060X.zip>`
+ - :download:`Herkulex DRS-0101 & DRS-0201 wheel horn dimensions PDF <downloads/Herkulex_wheel_horn_dimensions_0101_and_0201.pdf>`
+ - :download:`Herkulex DRS-0401 & DRS-0402 & DRS-0601 & DRS-0602 wheel horn dimensions PDF <downloads/Herkulex_wheel_horn_dimensions_040X_and_060X.pdf>`
+
+
+.. Further HerkuleX servo data can be found on `Hyulim Robot website <http://hovis.co.kr/guide/herkulex_eng.html>`_.

@@ -1,0 +1,97 @@
+======================================
+Constants
+======================================
+
+
+.. _mode-constants:
+
+Servo mode constants
+======================================
+
+.. data:: MODE_FREE
+
+    Servo freely movable.
+
+.. data:: MODE_BRAKE
+
+    Prevent motion of the servo.
+
+.. data:: MODE_CONTROL
+
+    Control instructions are permited.
+
+
+.. _control-constants:
+
+Position control and speed control constants
+======================================================
+
+.. data:: CONTROL_POSITION_DEGREE
+
+    Position mode in degree.
+
+.. data:: CONTROL_POSITION_STEP
+
+    Position mode in step unit.
+
+.. data:: CONTROL_SPEED_DEGREE
+
+    Speed mode in degree/second.
+
+.. data:: CONTROL_SPEED_STEP
+
+    Speed mode in step/second.
+
+.. data:: CONTROL_SPEED_NATIVE
+
+    Speed mode in native unit.
+
+
+.. _led-constants:
+
+LED color constants
+======================================
+
+.. data:: LED_OFF
+
+.. data:: LED_GREEN
+
+.. data:: LED_BLUE
+
+.. data:: LED_CYAN
+
+.. data:: LED_RED
+
+.. data:: LED_ORANGE
+
+.. data:: LED_VIOLET
+
+.. data:: LED_WHITE
+
+
+.. _ack-constants:
+
+Acknowlegement policy constants
+======================================
+
+.. data:: ACK_MUTE
+
+    No reply to any request except status requests.
+
+.. data:: ACK_READ
+
+    Only reply to read (getter) and status requests.
+
+.. data:: ACK_ALL
+
+    Reply to all requests.
+
+
+.. _other-constants:
+
+Other provided constants
+======================================
+
+.. data:: BAUDRATES
+
+    Tuple of baudrates supported by the various HerkuleX servos models.

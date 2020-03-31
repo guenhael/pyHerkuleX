@@ -1,0 +1,72 @@
+======================================
+pyHerkuleX
+======================================
+
+
+.. toctree::
+    :hidden:
+
+    Home <self>
+
+
+Description
+======================================
+
+.. include:: description.RST
+
+
+.. sidebar:: Contribute
+    :subtitle: `pyHerkuleX GitLab repository <https://framagit.org/guenhael/pyherkulex/>`_
+
+    If you want to contribute to this project, you can fork its
+    `GitLab repository on Framagit <https://framagit.org/guenhael/pyherkulex/>`_
+    (no registration needed, you can also sign in with your GitHub account).
+
+
+Get started
+======================================
+
+
+.. toctree::
+    :maxdepth: 1
+    :hidden:
+
+    Get started <gettingstarted>
+
+* :ref:`getting-started-1`
+* :ref:`getting-started-2`
+* :ref:`getting-started-3`
+
+
+Documentation
+======================================
+
+.. toctree::
+    :maxdepth: 1
+
+    servo
+    Functions <functions>
+    constants
+    exception
+
+
+Miscellaneous
+======================================
+
+.. toctree::
+    :maxdepth: 1
+
+    data
+    genindex
+    copyright
+
+
+.. ===================================================================
+   =========================== END INDEX ============================
+   ===================================================================
+
+.. extra-images to be embedded
+
+.. include:: images/images.RST
+
+

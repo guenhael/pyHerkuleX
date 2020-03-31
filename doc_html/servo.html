@@ -1,0 +1,2983 @@
+
+
+<!DOCTYPE html>
+<html lang="" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Servo class &mdash; pyherkulex 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="_static/pyherkulex_favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'1.0.0',
+              LANGUAGE:'',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: ''
+          };
+      </script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="Various functions" href="functions.html" />
+    <link rel="prev" title="Get started" href="gettingstarted.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0079b3" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/pyherkulex_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Get started</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Servo class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#servo-class-members"><tt class="docutils literal"><span class="pre">Servo</span> <span class="pre">class</span> <span class="pre">members</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#class-constants"><tt class="docutils literal"><span class="pre">Class</span> <span class="pre">constants</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-methods"><tt class="docutils literal"><span class="pre">Configuration</span> <span class="pre">methods</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-parameters"><tt class="docutils literal"><span class="pre">Configuration</span> <span class="pre">parameters</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#control-parameters"><tt class="docutils literal"><span class="pre">Control</span> <span class="pre">parameters</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#control-actions-and-outputs"><tt class="docutils literal"><span class="pre">Control</span> <span class="pre">actions</span> <span class="pre">and</span> <span class="pre">outputs</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#control-sensors"><tt class="docutils literal"><span class="pre">Control</span> <span class="pre">sensors</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-sensors"><tt class="docutils literal"><span class="pre">Other</span> <span class="pre">sensors</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exception.html">Exception class</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data.html">HerkuleX data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyherkulex</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Servo class</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="servo-class">
+<h1>Servo class<a class="headerlink" href="#servo-class" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pyherkulex.Servo">
+<em class="property">class </em><tt class="descname">Servo</tt><big>(</big><em>servoid=None</em>, <em>serial=None</em><big>)</big><a class="headerlink" href="#pyherkulex.Servo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represent a connected Smart HerkuleX Actuator.</p>
+<p>Servo class allows to establish serial connection with servos,
+access configuration parameters, get sensor feedbacks and
+send control instructions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>servoid</strong> (<em>int</em>) &#8211; The ID of the servo.
+If not provided, the <a class="reference internal" href="#pyherkulex.Servo" title="pyherkulex.Servo"><tt class="xref py py-class docutils literal"><span class="pre">Servo</span></tt></a> instance will broadcast
+any command to all connected servo.</li>
+<li><strong>serial</strong> (<em>serial.Serial</em>) &#8211; port instance of <tt class="xref py py-obj docutils literal"><span class="pre">serial.Serial</span></tt> .
+If not provided, the last used serial port will be used.
+If no serial port were used yet, an auto detection will be attempted.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"><div class="first last highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">pyherkulex</span> <span class="kn">as</span> <span class="nn">hx</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c"># Open the serial port (auto detected) with default baud rate 115200</span>
+<span class="n">serial0</span> <span class="o">=</span> <span class="n">hx</span><span class="o">.</span><span class="n">serial</span><span class="p">()</span>
+
+<span class="c"># Broadcast reboot command to all servos connected to serial0</span>
+<span class="c"># and light their LED in white</span>
+<span class="n">broadcast_srv</span> <span class="o">=</span> <span class="n">hx</span><span class="o">.</span><span class="n">Servo</span><span class="p">(</span><span class="n">serial</span> <span class="o">=</span> <span class="n">serial0</span><span class="p">)</span>
+<span class="n">broadcast_srv</span><span class="o">.</span><span class="n">reboot</span><span class="p">()</span>
+<span class="n">broadcast_srv</span><span class="o">.</span><span class="n">led</span> <span class="o">=</span> <span class="n">hx</span><span class="o">.</span><span class="n">LED_WHITE</span>
+
+<span class="c"># Create an instance of servo ID 0x01</span>
+<span class="c"># (considering the last used serial port</span>
+<span class="c"># as no specific port parameter is provided)</span>
+<span class="n">srv1</span> <span class="o">=</span> <span class="n">hx</span><span class="o">.</span><span class="n">Servo</span><span class="p">(</span><span class="mh">0x01</span><span class="p">)</span>
+
+<span class="c"># Check first if there is any error status</span>
+<span class="k">if</span> <span class="n">srv1</span><span class="o">.</span><span class="n">satus</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+    <span class="c"># Print status and raise an exception</span>
+    <span class="n">srv1</span><span class="o">.</span><span class="n">print_status</span><span class="p">()</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&#39;Please check your HerkuleX servo error status.&#39;</span><span class="p">)</span>
+
+<span class="c"># Print initial position (in step)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;Servo 1 initial position: &#39;</span><span class="p">,</span> <span class="n">srv1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+
+<span class="c"># Get initial angular position (in degree)</span>
+<span class="n">angle0</span> <span class="o">=</span> <span class="n">srv1</span><span class="o">.</span><span class="n">angle</span>
+
+<span class="c"># Enable control mode before sending control instructions</span>
+<span class="n">srv1</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">hx</span><span class="o">.</span><span class="n">MODE_CONTROL</span>
+
+<span class="c"># Increase angular position of 10 degree</span>
+<span class="c"># to be completed in an operating goal time of 2 second</span>
+<span class="c"># and light LED in blue</span>
+<span class="n">srv1</span><span class="o">.</span><span class="n">control_angle</span><span class="p">(</span><span class="n">angle0</span><span class="o">+</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">hx</span><span class="o">.</span><span class="n">LED_BLUE</span><span class="p">)</span>
+
+<span class="c"># Wait for control instruction to be completed</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+
+<span class="c"># Print current position (in step)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;Servo 1 current position: &#39;</span><span class="p">,</span> <span class="n">srv1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+
+<span class="c"># Go back to initial position</span>
+<span class="c"># to be reached in an operating goal time of 1.5 second</span>
+<span class="c"># and light LED in green</span>
+<span class="n">srv1</span><span class="o">.</span><span class="n">control_angle</span><span class="p">(</span><span class="n">angle0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">hx</span><span class="o">.</span><span class="n">LED_GREEN</span><span class="p">)</span>
+
+<span class="c"># Wait for control instruction to be completed</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+
+<span class="c"># Switch off LED of servo 1</span>
+<span class="n">srv1</span><span class="o">.</span><span class="n">led</span> <span class="o">=</span> <span class="n">hx</span><span class="o">.</span><span class="n">LED_OFF</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="section" id="servo-class-members">
+<span id="id1"></span><h2><a class="reference internal" href="#class-constants"><em>Servo class members</em></a><a class="headerlink" href="#servo-class-members" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils" id="class-constants-top">
+<dt><a class="reference internal" href="#class-constants"><em>Class constants</em></a></dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.MODEL" title="pyherkulex.Servo.MODEL"><tt class="xref py py-attr docutils literal"><span class="pre">MODEL</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.VERSION" title="pyherkulex.Servo.VERSION"><tt class="xref py py-attr docutils literal"><span class="pre">VERSION</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.POSITION_RESOLUTION_DEGREE" title="pyherkulex.Servo.POSITION_RESOLUTION_DEGREE"><tt class="xref py py-attr docutils literal"><span class="pre">POSITION_RESOLUTION_DEGREE</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.POSITION_MAX" title="pyherkulex.Servo.POSITION_MAX"><tt class="xref py py-attr docutils literal"><span class="pre">POSITION_MAX</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.SPEED_INPUT_RESOLUTION_STEP" title="pyherkulex.Servo.SPEED_INPUT_RESOLUTION_STEP"><tt class="xref py py-attr docutils literal"><span class="pre">SPEED_INPUT_RESOLUTION_STEP</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.SPEED_OUTPUT_RESOLUTION_STEP" title="pyherkulex.Servo.SPEED_OUTPUT_RESOLUTION_STEP"><tt class="xref py py-attr docutils literal"><span class="pre">SPEED_OUTPUT_RESOLUTION_STEP</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.SPEED_INPUT_RESOLUTION_DEGREE" title="pyherkulex.Servo.SPEED_INPUT_RESOLUTION_DEGREE"><tt class="xref py py-attr docutils literal"><span class="pre">SPEED_INPUT_RESOLUTION_DEGREE</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.SPEED_OUTPUT_RESOLUTION_DEGREE" title="pyherkulex.Servo.SPEED_OUTPUT_RESOLUTION_DEGREE"><tt class="xref py py-attr docutils literal"><span class="pre">SPEED_OUTPUT_RESOLUTION_DEGREE</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.GOAL_SPEED_RESOLUTION_STEP" title="pyherkulex.Servo.GOAL_SPEED_RESOLUTION_STEP"><tt class="xref py py-attr docutils literal"><span class="pre">GOAL_SPEED_RESOLUTION_STEP</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.GOAL_SPEED_RESOLUTION_DEGREE" title="pyherkulex.Servo.GOAL_SPEED_RESOLUTION_DEGREE"><tt class="xref py py-attr docutils literal"><span class="pre">GOAL_SPEED_RESOLUTION_DEGREE</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<dl class="docutils" id="configuration-methods-top">
+<dt><a class="reference internal" href="#configuration-methods"><em>Configuration methods</em></a></dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.reset" title="pyherkulex.Servo.reset"><tt class="xref py py-meth docutils literal"><span class="pre">reset()</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.reboot" title="pyherkulex.Servo.reboot"><tt class="xref py py-meth docutils literal"><span class="pre">reboot()</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.clear_status" title="pyherkulex.Servo.clear_status"><tt class="xref py py-meth docutils literal"><span class="pre">clear_status()</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.print_status" title="pyherkulex.Servo.print_status"><tt class="xref py py-meth docutils literal"><span class="pre">print_status()</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<dl class="docutils" id="configuration-parameters-top">
+<dt><a class="reference internal" href="#configuration-parameters"><em>Configuration parameters</em></a></dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.status" title="pyherkulex.Servo.status"><tt class="xref py py-attr docutils literal"><span class="pre">status</span></tt></a></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.baudrate" title="pyherkulex.Servo.baudrate"><tt class="xref py py-attr docutils literal"><span class="pre">baudrate</span></tt></a></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.id" title="pyherkulex.Servo.id"><tt class="xref py py-attr docutils literal"><span class="pre">id</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.id_eeprom" title="pyherkulex.Servo.id_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">id_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.led" title="pyherkulex.Servo.led"><tt class="xref py py-attr docutils literal"><span class="pre">led</span></tt></a></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.ack_policy" title="pyherkulex.Servo.ack_policy"><tt class="xref py py-attr docutils literal"><span class="pre">ack_policy</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.ack_policy_eeprom" title="pyherkulex.Servo.ack_policy_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">ack_policy_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.voltage_alarm_led_policy" title="pyherkulex.Servo.voltage_alarm_led_policy"><tt class="xref py py-attr docutils literal"><span class="pre">voltage_alarm_led_policy</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.voltage_alarm_led_policy_eeprom" title="pyherkulex.Servo.voltage_alarm_led_policy_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">voltage_alarm_led_policy_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.position_alarm_led_policy" title="pyherkulex.Servo.position_alarm_led_policy"><tt class="xref py py-attr docutils literal"><span class="pre">position_alarm_led_policy</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.position_alarm_led_policy_eeprom" title="pyherkulex.Servo.position_alarm_led_policy_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">position_alarm_led_policy_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.packet_alarm_led_policy" title="pyherkulex.Servo.packet_alarm_led_policy"><tt class="xref py py-attr docutils literal"><span class="pre">packet_alarm_led_policy</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.packet_alarm_led_policy_eeprom" title="pyherkulex.Servo.packet_alarm_led_policy_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">packet_alarm_led_policy_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.overload_alarm_led_policy" title="pyherkulex.Servo.overload_alarm_led_policy"><tt class="xref py py-attr docutils literal"><span class="pre">overload_alarm_led_policy</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.overload_alarm_led_policy_eeprom" title="pyherkulex.Servo.overload_alarm_led_policy_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">overload_alarm_led_policy_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.driver_alarm_led_policy" title="pyherkulex.Servo.driver_alarm_led_policy"><tt class="xref py py-attr docutils literal"><span class="pre">driver_alarm_led_policy</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.driver_alarm_led_policy_eeprom" title="pyherkulex.Servo.driver_alarm_led_policy_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">driver_alarm_led_policy_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.register_alarm_led_policy" title="pyherkulex.Servo.register_alarm_led_policy"><tt class="xref py py-attr docutils literal"><span class="pre">register_alarm_led_policy</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.register_alarm_led_policy_eeprom" title="pyherkulex.Servo.register_alarm_led_policy_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">register_alarm_led_policy_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.voltage_mode_free_policy" title="pyherkulex.Servo.voltage_mode_free_policy"><tt class="xref py py-attr docutils literal"><span class="pre">voltage_mode_free_policy</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.voltage_mode_free_policy_eeprom" title="pyherkulex.Servo.voltage_mode_free_policy_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">voltage_mode_free_policy_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.position_mode_free_policy" title="pyherkulex.Servo.position_mode_free_policy"><tt class="xref py py-attr docutils literal"><span class="pre">position_mode_free_policy</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.position_mode_free_policy_eeprom" title="pyherkulex.Servo.position_mode_free_policy_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">position_mode_free_policy_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.packet_mode_free_policy" title="pyherkulex.Servo.packet_mode_free_policy"><tt class="xref py py-attr docutils literal"><span class="pre">packet_mode_free_policy</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.packet_mode_free_policy_eeprom" title="pyherkulex.Servo.packet_mode_free_policy_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">packet_mode_free_policy_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.overload_mode_free_policy" title="pyherkulex.Servo.overload_mode_free_policy"><tt class="xref py py-attr docutils literal"><span class="pre">overload_mode_free_policy</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.overload_mode_free_policy_eeprom" title="pyherkulex.Servo.overload_mode_free_policy_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">overload_mode_free_policy_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.driver_mode_free_policy" title="pyherkulex.Servo.driver_mode_free_policy"><tt class="xref py py-attr docutils literal"><span class="pre">driver_mode_free_policy</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.driver_mode_free_policy_eeprom" title="pyherkulex.Servo.driver_mode_free_policy_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">driver_mode_free_policy_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.register_mode_free_policy" title="pyherkulex.Servo.register_mode_free_policy"><tt class="xref py py-attr docutils literal"><span class="pre">register_mode_free_policy</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.register_mode_free_policy_eeprom" title="pyherkulex.Servo.register_mode_free_policy_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">register_mode_free_policy_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.max_temperature" title="pyherkulex.Servo.max_temperature"><tt class="xref py py-attr docutils literal"><span class="pre">max_temperature</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.max_temperature_eeprom" title="pyherkulex.Servo.max_temperature_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">max_temperature_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.min_voltage" title="pyherkulex.Servo.min_voltage"><tt class="xref py py-attr docutils literal"><span class="pre">min_voltage</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.min_voltage_eeprom" title="pyherkulex.Servo.min_voltage_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">min_voltage_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.max_voltage" title="pyherkulex.Servo.max_voltage"><tt class="xref py py-attr docutils literal"><span class="pre">max_voltage</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.max_voltage_eeprom" title="pyherkulex.Servo.max_voltage_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">max_voltage_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.alarm_led_period" title="pyherkulex.Servo.alarm_led_period"><tt class="xref py py-attr docutils literal"><span class="pre">alarm_led_period</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.alarm_led_period_eeprom" title="pyherkulex.Servo.alarm_led_period_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">alarm_led_period_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.fault_check_period" title="pyherkulex.Servo.fault_check_period"><tt class="xref py py-attr docutils literal"><span class="pre">fault_check_period</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.fault_check_period_eeprom" title="pyherkulex.Servo.fault_check_period_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">fault_check_period_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.packet_garbage_check_period" title="pyherkulex.Servo.packet_garbage_check_period"><tt class="xref py py-attr docutils literal"><span class="pre">packet_garbage_check_period</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.packet_garbage_check_period_eeprom" title="pyherkulex.Servo.packet_garbage_check_period_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">packet_garbage_check_period_eeprom</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<dl class="docutils" id="control-parameters-top">
+<dt><a class="reference internal" href="#control-parameters"><em>Control parameters</em></a></dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.acceleration_ratio" title="pyherkulex.Servo.acceleration_ratio"><tt class="xref py py-attr docutils literal"><span class="pre">acceleration_ratio</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.acceleration_ratio_eeprom" title="pyherkulex.Servo.acceleration_ratio_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">acceleration_ratio_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.max_acceleration_time" title="pyherkulex.Servo.max_acceleration_time"><tt class="xref py py-attr docutils literal"><span class="pre">max_acceleration_time</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.max_acceleration_time_eeprom" title="pyherkulex.Servo.max_acceleration_time_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">max_acceleration_time_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.dead_zone" title="pyherkulex.Servo.dead_zone"><tt class="xref py py-attr docutils literal"><span class="pre">dead_zone</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.dead_zone_eeprom" title="pyherkulex.Servo.dead_zone_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">dead_zone_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.saturator_offset" title="pyherkulex.Servo.saturator_offset"><tt class="xref py py-attr docutils literal"><span class="pre">saturator_offset</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.saturator_offset_eeprom" title="pyherkulex.Servo.saturator_offset_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">saturator_offset_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.saturator_slope" title="pyherkulex.Servo.saturator_slope"><tt class="xref py py-attr docutils literal"><span class="pre">saturator_slope</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.saturator_slope_eeprom" title="pyherkulex.Servo.saturator_slope_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">saturator_slope_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.pwm_offset" title="pyherkulex.Servo.pwm_offset"><tt class="xref py py-attr docutils literal"><span class="pre">pwm_offset</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.pwm_offset_eeprom" title="pyherkulex.Servo.pwm_offset_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">pwm_offset_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.pwm_min" title="pyherkulex.Servo.pwm_min"><tt class="xref py py-attr docutils literal"><span class="pre">pwm_min</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.pwm_min_eeprom" title="pyherkulex.Servo.pwm_min_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">pwm_min_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.pwm_max" title="pyherkulex.Servo.pwm_max"><tt class="xref py py-attr docutils literal"><span class="pre">pwm_max</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.pwm_max_eeprom" title="pyherkulex.Servo.pwm_max_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">pwm_max_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.pwm_overload_threshold" title="pyherkulex.Servo.pwm_overload_threshold"><tt class="xref py py-attr docutils literal"><span class="pre">pwm_overload_threshold</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.pwm_overload_threshold_eeprom" title="pyherkulex.Servo.pwm_overload_threshold_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">pwm_overload_threshold_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.min_position" title="pyherkulex.Servo.min_position"><tt class="xref py py-attr docutils literal"><span class="pre">min_position</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.min_position_eeprom" title="pyherkulex.Servo.min_position_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">min_position_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.max_position" title="pyherkulex.Servo.max_position"><tt class="xref py py-attr docutils literal"><span class="pre">max_position</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.max_position_eeprom" title="pyherkulex.Servo.max_position_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">max_position_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.position_gain_p" title="pyherkulex.Servo.position_gain_p"><tt class="xref py py-attr docutils literal"><span class="pre">position_gain_p</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.position_gain_p_eeprom" title="pyherkulex.Servo.position_gain_p_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">position_gain_p_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.position_gain_i" title="pyherkulex.Servo.position_gain_i"><tt class="xref py py-attr docutils literal"><span class="pre">position_gain_i</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.position_gain_i_eeprom" title="pyherkulex.Servo.position_gain_i_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">position_gain_i_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.position_gain_d" title="pyherkulex.Servo.position_gain_d"><tt class="xref py py-attr docutils literal"><span class="pre">position_gain_d</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.position_gain_d_eeprom" title="pyherkulex.Servo.position_gain_d_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">position_gain_d_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.feedforward_gain_1" title="pyherkulex.Servo.feedforward_gain_1"><tt class="xref py py-attr docutils literal"><span class="pre">feedforward_gain_1</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.feedforward_gain_1_eeprom" title="pyherkulex.Servo.feedforward_gain_1_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">feedforward_gain_1_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.feedforward_gain_2" title="pyherkulex.Servo.feedforward_gain_2"><tt class="xref py py-attr docutils literal"><span class="pre">feedforward_gain_2</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.feedforward_gain_2_eeprom" title="pyherkulex.Servo.feedforward_gain_2_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">feedforward_gain_2_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.velocity_gain_p" title="pyherkulex.Servo.velocity_gain_p"><tt class="xref py py-attr docutils literal"><span class="pre">velocity_gain_p</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.velocity_gain_p_eeprom" title="pyherkulex.Servo.velocity_gain_p_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">velocity_gain_p_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.velocity_gain_i" title="pyherkulex.Servo.velocity_gain_i"><tt class="xref py py-attr docutils literal"><span class="pre">velocity_gain_i</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.velocity_gain_i_eeprom" title="pyherkulex.Servo.velocity_gain_i_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">velocity_gain_i_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.stop_detection_period" title="pyherkulex.Servo.stop_detection_period"><tt class="xref py py-attr docutils literal"><span class="pre">stop_detection_period</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.stop_detection_period_eeprom" title="pyherkulex.Servo.stop_detection_period_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">stop_detection_period_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.overload_detection_period" title="pyherkulex.Servo.overload_detection_period"><tt class="xref py py-attr docutils literal"><span class="pre">overload_detection_period</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.overload_detection_period_eeprom" title="pyherkulex.Servo.overload_detection_period_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">overload_detection_period_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.stop_threshold" title="pyherkulex.Servo.stop_threshold"><tt class="xref py py-attr docutils literal"><span class="pre">stop_threshold</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.stop_threshold_eeprom" title="pyherkulex.Servo.stop_threshold_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">stop_threshold_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.inposition_margin" title="pyherkulex.Servo.inposition_margin"><tt class="xref py py-attr docutils literal"><span class="pre">inposition_margin</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.inposition_margin_eeprom" title="pyherkulex.Servo.inposition_margin_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">inposition_margin_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.calibration_difference" title="pyherkulex.Servo.calibration_difference"><tt class="xref py py-attr docutils literal"><span class="pre">calibration_difference</span></tt></a></td>
+<td><a class="reference internal" href="#pyherkulex.Servo.calibration_difference_eeprom" title="pyherkulex.Servo.calibration_difference_eeprom"><tt class="xref py py-attr docutils literal"><span class="pre">calibration_difference_eeprom</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.mode" title="pyherkulex.Servo.mode"><tt class="xref py py-attr docutils literal"><span class="pre">mode</span></tt></a></td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<dl class="docutils" id="control-actions-and-outputs-top">
+<dt><a class="reference internal" href="#control-actions-and-outputs"><em>Control actions and outputs</em></a></dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.set_absolute_position_origin" title="pyherkulex.Servo.set_absolute_position_origin"><tt class="xref py py-meth docutils literal"><span class="pre">set_absolute_position_origin()</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.reset_absolute_position_origin" title="pyherkulex.Servo.reset_absolute_position_origin"><tt class="xref py py-meth docutils literal"><span class="pre">reset_absolute_position_origin()</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.speed_mode" title="pyherkulex.Servo.speed_mode"><tt class="xref py py-attr docutils literal"><span class="pre">speed_mode</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.operating_time" title="pyherkulex.Servo.operating_time"><tt class="xref py py-attr docutils literal"><span class="pre">operating_time</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.control_stop" title="pyherkulex.Servo.control_stop"><tt class="xref py py-meth docutils literal"><span class="pre">control_stop()</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.position" title="pyherkulex.Servo.position"><tt class="xref py py-attr docutils literal"><span class="pre">position</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.control_position" title="pyherkulex.Servo.control_position"><tt class="xref py py-meth docutils literal"><span class="pre">control_position()</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.control_position_increment" title="pyherkulex.Servo.control_position_increment"><tt class="xref py py-meth docutils literal"><span class="pre">control_position_increment()</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.angle" title="pyherkulex.Servo.angle"><tt class="xref py py-attr docutils literal"><span class="pre">angle</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.control_angle" title="pyherkulex.Servo.control_angle"><tt class="xref py py-meth docutils literal"><span class="pre">control_angle()</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.control_angle_increment" title="pyherkulex.Servo.control_angle_increment"><tt class="xref py py-meth docutils literal"><span class="pre">control_angle_increment()</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.native_speed" title="pyherkulex.Servo.native_speed"><tt class="xref py py-attr docutils literal"><span class="pre">native_speed</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.control_native_speed" title="pyherkulex.Servo.control_native_speed"><tt class="xref py py-meth docutils literal"><span class="pre">control_native_speed()</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.speed" title="pyherkulex.Servo.speed"><tt class="xref py py-attr docutils literal"><span class="pre">speed</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.control_speed" title="pyherkulex.Servo.control_speed"><tt class="xref py py-meth docutils literal"><span class="pre">control_speed()</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.angular_speed" title="pyherkulex.Servo.angular_speed"><tt class="xref py py-attr docutils literal"><span class="pre">angular_speed</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.control_angular_speed" title="pyherkulex.Servo.control_angular_speed"><tt class="xref py py-meth docutils literal"><span class="pre">control_angular_speed()</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.absolute_position" title="pyherkulex.Servo.absolute_position"><tt class="xref py py-attr docutils literal"><span class="pre">absolute_position</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.absolute_angle" title="pyherkulex.Servo.absolute_angle"><tt class="xref py py-attr docutils literal"><span class="pre">absolute_angle</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.absolute_raw_position" title="pyherkulex.Servo.absolute_raw_position"><tt class="xref py py-attr docutils literal"><span class="pre">absolute_raw_position</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<dl class="docutils" id="control-sensors-top">
+<dt><a class="reference internal" href="#control-sensors"><em>Control sensors</em></a></dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.absolute_raw_angle" title="pyherkulex.Servo.absolute_raw_angle"><tt class="xref py py-attr docutils literal"><span class="pre">absolute_raw_angle</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.absolute_goal_position" title="pyherkulex.Servo.absolute_goal_position"><tt class="xref py py-attr docutils literal"><span class="pre">absolute_goal_position</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.absolute_goal_angle" title="pyherkulex.Servo.absolute_goal_angle"><tt class="xref py py-attr docutils literal"><span class="pre">absolute_goal_angle</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.absolute_intermediate_goal_position" title="pyherkulex.Servo.absolute_intermediate_goal_position"><tt class="xref py py-attr docutils literal"><span class="pre">absolute_intermediate_goal_position</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.absolute_intermediate_goal_angle" title="pyherkulex.Servo.absolute_intermediate_goal_angle"><tt class="xref py py-attr docutils literal"><span class="pre">absolute_intermediate_goal_angle</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.intermediate_native_goal_speed" title="pyherkulex.Servo.intermediate_native_goal_speed"><tt class="xref py py-attr docutils literal"><span class="pre">intermediate_native_goal_speed</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.intermediate_absolute_goal_speed" title="pyherkulex.Servo.intermediate_absolute_goal_speed"><tt class="xref py py-attr docutils literal"><span class="pre">intermediate_absolute_goal_speed</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.intermediate_angular_goal_speed" title="pyherkulex.Servo.intermediate_angular_goal_speed"><tt class="xref py py-attr docutils literal"><span class="pre">intermediate_angular_goal_speed</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.pwm" title="pyherkulex.Servo.pwm"><tt class="xref py py-attr docutils literal"><span class="pre">pwm</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<dl class="docutils" id="other-sensors-top">
+<dt><a class="reference internal" href="#other-sensors"><em>Other sensors</em></a></dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#pyherkulex.Servo.voltage" title="pyherkulex.Servo.voltage"><tt class="xref py py-attr docutils literal"><span class="pre">voltage</span></tt></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pyherkulex.Servo.temperature" title="pyherkulex.Servo.temperature"><tt class="xref py py-attr docutils literal"><span class="pre">temperature</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="class-constants">
+<span id="id2"></span><h2><a class="reference internal" href="#class-constants-top"><em>Class constants</em></a><a class="headerlink" href="#class-constants" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt>
+<em class="property">class </em><tt class="descname">Servo</tt></dt>
+<dd><dl class="attribute">
+<dt id="pyherkulex.Servo.MODEL">
+<tt class="descname">MODEL</tt><a class="headerlink" href="#pyherkulex.Servo.MODEL" title="Permalink to this definition">¶</a></dt>
+<dd><p>HerkuleX servo model value (int) corresponding to the model number
+(e.g. 201 corresponds to DRS-0201)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.VERSION">
+<tt class="descname">VERSION</tt><a class="headerlink" href="#pyherkulex.Servo.VERSION" title="Permalink to this definition">¶</a></dt>
+<dd><p>HerkuleX servo firmware version (int)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.POSITION_RESOLUTION_DEGREE">
+<tt class="descname">POSITION_RESOLUTION_DEGREE</tt><a class="headerlink" href="#pyherkulex.Servo.POSITION_RESOLUTION_DEGREE" title="Permalink to this definition">¶</a></dt>
+<dd><p>HerkuleX servo angular position resolution in degree/step (float)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.POSITION_MAX">
+<tt class="descname">POSITION_MAX</tt><a class="headerlink" href="#pyherkulex.Servo.POSITION_MAX" title="Permalink to this definition">¶</a></dt>
+<dd><p>HerkuleX servo maximum supported operating position in step (int)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.SPEED_INPUT_RESOLUTION_STEP">
+<tt class="descname">SPEED_INPUT_RESOLUTION_STEP</tt><a class="headerlink" href="#pyherkulex.Servo.SPEED_INPUT_RESOLUTION_STEP" title="Permalink to this definition">¶</a></dt>
+<dd><p>HerkuleX servo absolute speed input resolution in step/second (float)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.SPEED_OUTPUT_RESOLUTION_STEP">
+<tt class="descname">SPEED_OUTPUT_RESOLUTION_STEP</tt><a class="headerlink" href="#pyherkulex.Servo.SPEED_OUTPUT_RESOLUTION_STEP" title="Permalink to this definition">¶</a></dt>
+<dd><p>HerkuleX servo absolute speed output resolution in step/second (float)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.SPEED_INPUT_RESOLUTION_DEGREE">
+<tt class="descname">SPEED_INPUT_RESOLUTION_DEGREE</tt><a class="headerlink" href="#pyherkulex.Servo.SPEED_INPUT_RESOLUTION_DEGREE" title="Permalink to this definition">¶</a></dt>
+<dd><p>HerkuleX servo angular speed input resolution in degree/second (float)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.SPEED_OUTPUT_RESOLUTION_DEGREE">
+<tt class="descname">SPEED_OUTPUT_RESOLUTION_DEGREE</tt><a class="headerlink" href="#pyherkulex.Servo.SPEED_OUTPUT_RESOLUTION_DEGREE" title="Permalink to this definition">¶</a></dt>
+<dd><p>HerkuleX servo angular speed output resolution in degree/second (float)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.GOAL_SPEED_RESOLUTION_STEP">
+<tt class="descname">GOAL_SPEED_RESOLUTION_STEP</tt><a class="headerlink" href="#pyherkulex.Servo.GOAL_SPEED_RESOLUTION_STEP" title="Permalink to this definition">¶</a></dt>
+<dd><p>HerkuleX servo absolute goal speed resolution in step/second (float)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.GOAL_SPEED_RESOLUTION_DEGREE">
+<tt class="descname">GOAL_SPEED_RESOLUTION_DEGREE</tt><a class="headerlink" href="#pyherkulex.Servo.GOAL_SPEED_RESOLUTION_DEGREE" title="Permalink to this definition">¶</a></dt>
+<dd><p>HerkuleX servo angular goal speed resolution in degree/second (float)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="configuration-methods">
+<span id="id3"></span><h2><a class="reference internal" href="#configuration-methods-top"><em>Configuration methods</em></a><a class="headerlink" href="#configuration-methods" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt>
+<em class="property">class </em><tt class="descname">Servo</tt></dt>
+<dd><dl class="method">
+<dt id="pyherkulex.Servo.reset">
+<tt class="descname">reset</tt><big>(</big><em>idskip=True</em>, <em>baudrateskip=True</em>, <em>sleep=2.0</em><big>)</big><a class="headerlink" href="#pyherkulex.Servo.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset all memory registers to factory default values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>idskip</strong> (<em>bool</em>) &#8211; Set to True to skip ID reset.</li>
+<li><strong>baudrateskip</strong> (<em>bool</em>) &#8211; Set to True to skip baud rate reset.</li>
+<li><strong>sleep</strong> (<em>float</em>) &#8211; Suspension time for rebooting.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyherkulex.Servo.reboot">
+<tt class="descname">reboot</tt><big>(</big><em>sleep=2.0</em><big>)</big><a class="headerlink" href="#pyherkulex.Servo.reboot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reboot and copy data from EEPROM register to RAM register.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sleep</strong> (<em>float</em>) &#8211; Suspension time for rebooting.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyherkulex.Servo.clear_status">
+<tt class="descname">clear_status</tt><big>(</big><big>)</big><a class="headerlink" href="#pyherkulex.Servo.clear_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear error status and detailed status.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyherkulex.Servo.print_status">
+<tt class="descname">print_status</tt><big>(</big><big>)</big><a class="headerlink" href="#pyherkulex.Servo.print_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print status error and status detail.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="configuration-parameters">
+<span id="id4"></span><h2><a class="reference internal" href="#configuration-parameters-top"><em>Configuration parameters</em></a><a class="headerlink" href="#configuration-parameters" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt>
+<em class="property">class </em><tt class="descname">Servo</tt></dt>
+<dd><dl class="attribute">
+<dt id="pyherkulex.Servo.status">
+<tt class="descname">status</tt><a class="headerlink" href="#pyherkulex.Servo.status" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get status</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Manually set status</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">tuple of two int values (error status code, detailed status code)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.baudrate">
+<tt class="descname">baudrate</tt><a class="headerlink" href="#pyherkulex.Servo.baudrate" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get baud rate in bps</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set baud rate in bps (save it in EEPROM)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int among the values supported by the HerkuleX servo model</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.id">
+<tt class="descname">id</tt><a class="headerlink" href="#pyherkulex.Servo.id" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get servo ID</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set servo ID</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int from 0 to 254 (0xFE), with 254 corresponding to broadcat ID.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.id_eeprom">
+<tt class="descname">id_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.id_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved ID from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save ID in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.led">
+<tt class="descname">led</tt><a class="headerlink" href="#pyherkulex.Servo.led" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get LED color</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set LED color</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+<p>Supported values are given as <a class="reference internal" href="constants.html#led-constants"><em>LED color constants</em></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.ack_policy">
+<tt class="descname">ack_policy</tt><a class="headerlink" href="#pyherkulex.Servo.ack_policy" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get aknowlegement policy</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set aknowlegement policy</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Three acknowlegement policy values are supported:</dt>
+<dd><ul class="first last simple">
+<li><a class="reference internal" href="constants.html#ack-constants"><em>ACK_MUTE</em></a>:
+With this policy, servo will not reply to any request
+except status requests.</li>
+<li><a class="reference internal" href="constants.html#ack-constants"><em>ACK_READ</em></a>:
+With this policy, servo will only reply to read (getter)
+and status requests.</li>
+<li><a class="reference internal" href="constants.html#ack-constants"><em>ACK_ALL</em></a>:
+With this policy, servo will reply to all requests.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.ack_policy_eeprom">
+<tt class="descname">ack_policy_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.ack_policy_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved aknowlegement policy from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save aknowlegement policy in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.voltage_alarm_led_policy">
+<tt class="descname">voltage_alarm_led_policy</tt><a class="headerlink" href="#pyherkulex.Servo.voltage_alarm_led_policy" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get voltage alarm led policy</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set voltage alarm led policy</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.voltage_alarm_led_policy_eeprom">
+<tt class="descname">voltage_alarm_led_policy_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.voltage_alarm_led_policy_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved voltage alarm led policy from eeprom</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save voltage alarm led policy in eeprom</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.position_alarm_led_policy">
+<tt class="descname">position_alarm_led_policy</tt><a class="headerlink" href="#pyherkulex.Servo.position_alarm_led_policy" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get position alarm led policy</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set position alarm led policy</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.position_alarm_led_policy_eeprom">
+<tt class="descname">position_alarm_led_policy_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.position_alarm_led_policy_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved position alarm led policy from eeprom</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save position alarm led policy in eeprom</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.packet_alarm_led_policy">
+<tt class="descname">packet_alarm_led_policy</tt><a class="headerlink" href="#pyherkulex.Servo.packet_alarm_led_policy" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get packet alarm led policy</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set packet alarm led policy</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.packet_alarm_led_policy_eeprom">
+<tt class="descname">packet_alarm_led_policy_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.packet_alarm_led_policy_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved packet alarm led policy from eeprom</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save packet alarm led policy in eeprom</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.overload_alarm_led_policy">
+<tt class="descname">overload_alarm_led_policy</tt><a class="headerlink" href="#pyherkulex.Servo.overload_alarm_led_policy" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get overload alarm led policy</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set overload alarm led policy</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.overload_alarm_led_policy_eeprom">
+<tt class="descname">overload_alarm_led_policy_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.overload_alarm_led_policy_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved overload alarm led policy from eeprom</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save overload alarm led policy in eeprom</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.driver_alarm_led_policy">
+<tt class="descname">driver_alarm_led_policy</tt><a class="headerlink" href="#pyherkulex.Servo.driver_alarm_led_policy" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get driver alarm led policy</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set driver alarm led policy</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.driver_alarm_led_policy_eeprom">
+<tt class="descname">driver_alarm_led_policy_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.driver_alarm_led_policy_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved driver alarm led policy from eeprom</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save driver alarm led policy in eeprom</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.register_alarm_led_policy">
+<tt class="descname">register_alarm_led_policy</tt><a class="headerlink" href="#pyherkulex.Servo.register_alarm_led_policy" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get register alarm led policy</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set register alarm led policy</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.register_alarm_led_policy_eeprom">
+<tt class="descname">register_alarm_led_policy_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.register_alarm_led_policy_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved register alarm led policy from eeprom</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save register alarm led policy in eeprom</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.voltage_mode_free_policy">
+<tt class="descname">voltage_mode_free_policy</tt><a class="headerlink" href="#pyherkulex.Servo.voltage_mode_free_policy" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get voltage mode free policy</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set voltage mode free policy</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.voltage_mode_free_policy_eeprom">
+<tt class="descname">voltage_mode_free_policy_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.voltage_mode_free_policy_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved voltage mode free policy from eeprom</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save voltage mode free policy in eeprom</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.position_mode_free_policy">
+<tt class="descname">position_mode_free_policy</tt><a class="headerlink" href="#pyherkulex.Servo.position_mode_free_policy" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get position mode free policy</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set position mode free policy</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.position_mode_free_policy_eeprom">
+<tt class="descname">position_mode_free_policy_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.position_mode_free_policy_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved position mode free policy from eeprom</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save position mode free policy in eeprom</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.packet_mode_free_policy">
+<tt class="descname">packet_mode_free_policy</tt><a class="headerlink" href="#pyherkulex.Servo.packet_mode_free_policy" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get packet mode free policy</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set packet mode free policy</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.packet_mode_free_policy_eeprom">
+<tt class="descname">packet_mode_free_policy_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.packet_mode_free_policy_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved packet mode free policy from eeprom</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save packet mode free policy in eeprom</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.overload_mode_free_policy">
+<tt class="descname">overload_mode_free_policy</tt><a class="headerlink" href="#pyherkulex.Servo.overload_mode_free_policy" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get overload mode free policy</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set overload mode free policy</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.overload_mode_free_policy_eeprom">
+<tt class="descname">overload_mode_free_policy_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.overload_mode_free_policy_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved overload mode free policy from eeprom</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save overload mode free policy in eeprom</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.driver_mode_free_policy">
+<tt class="descname">driver_mode_free_policy</tt><a class="headerlink" href="#pyherkulex.Servo.driver_mode_free_policy" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get driver mode free policy</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set driver mode free policy</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.driver_mode_free_policy_eeprom">
+<tt class="descname">driver_mode_free_policy_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.driver_mode_free_policy_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved driver mode free policy from eeprom</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save driver mode free policy in eeprom</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.register_mode_free_policy">
+<tt class="descname">register_mode_free_policy</tt><a class="headerlink" href="#pyherkulex.Servo.register_mode_free_policy" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get register mode free policy</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set register mode free policy</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.register_mode_free_policy_eeprom">
+<tt class="descname">register_mode_free_policy_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.register_mode_free_policy_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved register mode free policy from eeprom</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save register mode free policy in eeprom</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.max_temperature">
+<tt class="descname">max_temperature</tt><a class="headerlink" href="#pyherkulex.Servo.max_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get maximum allowed temperature (in degree Celsius)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set maximum allowed temperature (in degree Celsius)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.max_temperature_eeprom">
+<tt class="descname">max_temperature_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.max_temperature_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved maximum allowed temperature (in degree Celsius) from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save maximum allowed temperature (in degree Celsius) in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.min_voltage">
+<tt class="descname">min_voltage</tt><a class="headerlink" href="#pyherkulex.Servo.min_voltage" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get minimum operating voltage (in volt)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set minimum operating voltage (in volt)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.min_voltage_eeprom">
+<tt class="descname">min_voltage_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.min_voltage_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved minimum operating voltage (in volt) from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save minimum operating voltage (in volt) in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.max_voltage">
+<tt class="descname">max_voltage</tt><a class="headerlink" href="#pyherkulex.Servo.max_voltage" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get maximum operating voltage (in volt)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set maximum operating voltage (in volt)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.max_voltage_eeprom">
+<tt class="descname">max_voltage_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.max_voltage_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved maximum operating voltage (in volt) from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save maximum operating voltage (in volt) in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.alarm_led_period">
+<tt class="descname">alarm_led_period</tt><a class="headerlink" href="#pyherkulex.Servo.alarm_led_period" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get blink period of alarm LED</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set blink period of alarm LED</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.alarm_led_period_eeprom">
+<tt class="descname">alarm_led_period_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.alarm_led_period_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved blink period of alarm LED from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save blink period of alarm LED in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.fault_check_period">
+<tt class="descname">fault_check_period</tt><a class="headerlink" href="#pyherkulex.Servo.fault_check_period" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get fault check period for temperature and input voltage</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set fault check period for temperature and input voltage</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.fault_check_period_eeprom">
+<tt class="descname">fault_check_period_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.fault_check_period_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved fault check period for temperature and input voltage from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save fault check period for temperature and input voltage in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.packet_garbage_check_period">
+<tt class="descname">packet_garbage_check_period</tt><a class="headerlink" href="#pyherkulex.Servo.packet_garbage_check_period" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get packet garbage check period</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set packet garbage check period</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.packet_garbage_check_period_eeprom">
+<tt class="descname">packet_garbage_check_period_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.packet_garbage_check_period_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved packet garbage check period from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save packet garbage check period in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="control-parameters">
+<span id="id5"></span><h2><a class="reference internal" href="#control-parameters-top"><em>Control parameters</em></a><a class="headerlink" href="#control-parameters" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt>
+<em class="property">class </em><tt class="descname">Servo</tt></dt>
+<dd><dl class="attribute">
+<dt id="pyherkulex.Servo.acceleration_ratio">
+<tt class="descname">acceleration_ratio</tt><a class="headerlink" href="#pyherkulex.Servo.acceleration_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get acceleration ratio</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set acceleration ratio</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float
+from 0 (rectangle speed profile)
+to 0.5 (triangle speed profile)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.acceleration_ratio_eeprom">
+<tt class="descname">acceleration_ratio_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.acceleration_ratio_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved acceleration ratio from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save acceleration_ratio in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float
+from 0 (rectangle speed profile)
+to 0.5 (triangle speed profile)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.max_acceleration_time">
+<tt class="descname">max_acceleration_time</tt><a class="headerlink" href="#pyherkulex.Servo.max_acceleration_time" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get max acceleration time</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set max acceleration time</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.max_acceleration_time_eeprom">
+<tt class="descname">max_acceleration_time_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.max_acceleration_time_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved max acceleration time from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save max acceleration time in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.dead_zone">
+<tt class="descname">dead_zone</tt><a class="headerlink" href="#pyherkulex.Servo.dead_zone" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get dead zone</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set dead zone</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+<p>The dead zone value corresponds to the permited difference (in step)
+between goal position and actual position.</p>
+<p>If the difference (error) is less than the dead zone value,
+servo assumes it has reached the goal position and stops.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.dead_zone_eeprom">
+<tt class="descname">dead_zone_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.dead_zone_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved dead zone from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save dead zone in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.saturator_offset">
+<tt class="descname">saturator_offset</tt><a class="headerlink" href="#pyherkulex.Servo.saturator_offset" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saturator offset</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set saturator offset</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+<p>Saturator offset corresponds to the PWM prescribed value
+when the servo reaches the dead zone boundary.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.saturator_offset_eeprom">
+<tt class="descname">saturator_offset_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.saturator_offset_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved saturator offset from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save saturator offset in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.saturator_slope">
+<tt class="descname">saturator_slope</tt><a class="headerlink" href="#pyherkulex.Servo.saturator_slope" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saturator slop</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set saturator slop</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+<p>This value corresponds to the slop of the linear transition
+of the PWM from the saturator offset value
+to the maximum PWM value versus position.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.saturator_slope_eeprom">
+<tt class="descname">saturator_slope_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.saturator_slope_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved saturator slop from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save saturator slop in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.pwm_offset">
+<tt class="descname">pwm_offset</tt><a class="headerlink" href="#pyherkulex.Servo.pwm_offset" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get PWM offset</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set PWM offset</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+<p>Prescribed PWM will be increased by the amount of the offset.
+This offset acts similar to a compensator when constant loads
+are applied on the servo (e.g. from gravity).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.pwm_offset_eeprom">
+<tt class="descname">pwm_offset_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.pwm_offset_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved PWM offset from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save PWM offset in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.pwm_min">
+<tt class="descname">pwm_min</tt><a class="headerlink" href="#pyherkulex.Servo.pwm_min" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get minimum PWM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set minimum PWM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+<p>Minimum PWM can be used when there is jerky movement due to
+tight fitting or friction in the servo application system
+but assigning a minimum PWM value that is too large may lead
+to unstable system.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.pwm_min_eeprom">
+<tt class="descname">pwm_min_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.pwm_min_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved minimum PWM from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save minimum PWM in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.pwm_max">
+<tt class="descname">pwm_max</tt><a class="headerlink" href="#pyherkulex.Servo.pwm_max" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get maximum PWM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set maximum PWM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+<p>Maximum PWM affects the output maximum torque.
+Decreasing maximum PWM can also increase battery life.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.pwm_max_eeprom">
+<tt class="descname">pwm_max_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.pwm_max_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved maximum PWM from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save maximum PWM in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.pwm_overload_threshold">
+<tt class="descname">pwm_overload_threshold</tt><a class="headerlink" href="#pyherkulex.Servo.pwm_overload_threshold" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get PWM overload threshold</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set PWM overload threshold</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+<p>Overload activates when external load is greater than
+PWM overload threshold.
+Overload never activates when the PWM overload threshold
+is set to its maximum permited value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.pwm_overload_threshold_eeprom">
+<tt class="descname">pwm_overload_threshold_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.pwm_overload_threshold_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved PWM overload threshold from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save PWM overload threshold in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.min_position">
+<tt class="descname">min_position</tt><a class="headerlink" href="#pyherkulex.Servo.min_position" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get min operating position</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set min operating position</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.min_position_eeprom">
+<tt class="descname">min_position_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.min_position_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved min operating position from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save min operating position in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.max_position">
+<tt class="descname">max_position</tt><a class="headerlink" href="#pyherkulex.Servo.max_position" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get max operating position</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set max operating position</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.max_position_eeprom">
+<tt class="descname">max_position_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.max_position_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved max operating position from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save max operating position in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.position_gain_p">
+<tt class="descname">position_gain_p</tt><a class="headerlink" href="#pyherkulex.Servo.position_gain_p" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get proportional gain of the position PID</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set proportional gain of the position PID</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.position_gain_p_eeprom">
+<tt class="descname">position_gain_p_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.position_gain_p_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved proportional gain of the position PID from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save proportional gain of the position PID in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.position_gain_i">
+<tt class="descname">position_gain_i</tt><a class="headerlink" href="#pyherkulex.Servo.position_gain_i" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get integral gain of the position PID</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set integral gain of the position PID</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.position_gain_i_eeprom">
+<tt class="descname">position_gain_i_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.position_gain_i_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved integral gain of the position PID from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save integral gain of the position PID in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.position_gain_d">
+<tt class="descname">position_gain_d</tt><a class="headerlink" href="#pyherkulex.Servo.position_gain_d" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get derivative gain of the position PID</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set derivative gain of the position PID</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.position_gain_d_eeprom">
+<tt class="descname">position_gain_d_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.position_gain_d_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved derivative gain of the position PID from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save derivative gain of the position PID in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.feedforward_gain_1">
+<tt class="descname">feedforward_gain_1</tt><a class="headerlink" href="#pyherkulex.Servo.feedforward_gain_1" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get position feedforward first gain (Kd)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set position feedforward first gain (Kd)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.feedforward_gain_1_eeprom">
+<tt class="descname">feedforward_gain_1_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.feedforward_gain_1_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved position feedforward first gain (Kd) from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save position feedforward first gain (Kd) in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.feedforward_gain_2">
+<tt class="descname">feedforward_gain_2</tt><a class="headerlink" href="#pyherkulex.Servo.feedforward_gain_2" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get position feedforward second gain (Kdd)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set position feedforward second gain (Kdd)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.feedforward_gain_2_eeprom">
+<tt class="descname">feedforward_gain_2_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.feedforward_gain_2_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved position feedforward second gain (Kdd) from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save position feedforward second gain (Kdd) in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.velocity_gain_p">
+<tt class="descname">velocity_gain_p</tt><a class="headerlink" href="#pyherkulex.Servo.velocity_gain_p" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get proportional gain of the velocity PID</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set proportional gain of the velocity PID</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This argument is available only with servo models DRS-0402 and DRS-0602.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.velocity_gain_p_eeprom">
+<tt class="descname">velocity_gain_p_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.velocity_gain_p_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved proportional gain of the velocity PID from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save proportional gain of the velocity PID in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This argument is available only with servo models DRS-0402 and DRS-0602.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.velocity_gain_i">
+<tt class="descname">velocity_gain_i</tt><a class="headerlink" href="#pyherkulex.Servo.velocity_gain_i" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get integral gain of the velocity PID</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set integral gain of the velocity PID</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This argument is available only with servo models DRS-0402 and DRS-0602.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.velocity_gain_i_eeprom">
+<tt class="descname">velocity_gain_i_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.velocity_gain_i_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved integral gain of the velocity PID from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save integral gain of the velocity PID in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This argument is available only with servo models DRS-0402 and DRS-0602.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.stop_detection_period">
+<tt class="descname">stop_detection_period</tt><a class="headerlink" href="#pyherkulex.Servo.stop_detection_period" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get stop detection period</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set stop detection period</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+<p>Servo stop is confirmed if stoppage lasts for detection period time.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.stop_detection_period_eeprom">
+<tt class="descname">stop_detection_period_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.stop_detection_period_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved stop detection period from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save stop detection period in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.overload_detection_period">
+<tt class="descname">overload_detection_period</tt><a class="headerlink" href="#pyherkulex.Servo.overload_detection_period" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get overload detection period</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set overload detection period</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.overload_detection_period_eeprom">
+<tt class="descname">overload_detection_period_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.overload_detection_period_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved overload detection period from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save overload detection period in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.stop_threshold">
+<tt class="descname">stop_threshold</tt><a class="headerlink" href="#pyherkulex.Servo.stop_threshold" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get stop threshold</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set stop threshold</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+<p>The servo is seen as not moving (stopped) when the position
+movement of the servo is less than the stop threshold value.
+The servo is determined to be stopped if the stoppage lasts
+longer than the stop detection period.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.stop_threshold_eeprom">
+<tt class="descname">stop_threshold_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.stop_threshold_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved stop threshold from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save stop threshold in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.inposition_margin">
+<tt class="descname">inposition_margin</tt><a class="headerlink" href="#pyherkulex.Servo.inposition_margin" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get inposition margin</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set inposition margin</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+<p>Standard value to determine if the prescribed position has been reached.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.inposition_margin_eeprom">
+<tt class="descname">inposition_margin_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.inposition_margin_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved inposition margin from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save inposition margin in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.calibration_difference">
+<tt class="descname">calibration_difference</tt><a class="headerlink" href="#pyherkulex.Servo.calibration_difference" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get calibration difference</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set calibration difference</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+<p>Used to calibrate newtral point of the calibrated position
+(calibrated position = absolute position - calibration difference).
+It is generaly used to make adjustments and compensate assembly
+variations.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.calibration_difference_eeprom">
+<tt class="descname">calibration_difference_eeprom</tt><a class="headerlink" href="#pyherkulex.Servo.calibration_difference_eeprom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get saved calibration difference from EEPROM</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Save calibration difference in EEPROM</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.mode">
+<tt class="descname">mode</tt><a class="headerlink" href="#pyherkulex.Servo.mode" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get servo control mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set servo control mode</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Three control mode values are supported:</dt>
+<dd><ul class="first last simple">
+<li><a class="reference internal" href="constants.html#mode-constants"><em>MODE_FREE</em></a>:
+In this mode, the servo shaft is freely movable.
+Position control and speed control will not work.
+Set MODE_CONTROL before that.</li>
+<li><a class="reference internal" href="constants.html#mode-constants"><em>MODE_BRAKE</em></a>:
+In this mode, servo motion is prevented.
+Position control and speed control will not work.
+Set MODE_CONTROL before that.</li>
+<li><a class="reference internal" href="constants.html#mode-constants"><em>MODE_CONTROL</em></a>:
+In this mode, control instructions are permited.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="control-actions-and-outputs">
+<span id="id6"></span><h2><a class="reference internal" href="#control-actions-and-outputs-top"><em>Control actions and outputs</em></a><a class="headerlink" href="#control-actions-and-outputs" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt>
+<em class="property">class </em><tt class="descname">Servo</tt></dt>
+<dd><dl class="method">
+<dt id="pyherkulex.Servo.set_absolute_position_origin">
+<tt class="descname">set_absolute_position_origin</tt><big>(</big><em>option='middle'</em><big>)</big><a class="headerlink" href="#pyherkulex.Servo.set_absolute_position_origin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the absolute position origin from the current position.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>option</strong> (<em>string</em>) &#8211; <p>Only 5 different options are permited:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">'min'</span></tt>: current position becomes the min absolute position (current absolute position becomes 0)</li>
+<li><tt class="docutils literal"><span class="pre">'half_forward'</span></tt>: current position plus 180° becomes the middle absolute position (current absolute position becomes 9903)</li>
+<li><tt class="docutils literal"><span class="pre">'middle'</span></tt> (default): current position becomes the middle absolute position (current absolute position becomes 16398)</li>
+<li><tt class="docutils literal"><span class="pre">'half_backward'</span></tt>: current position minus 180° becomes the middle absolute position (current absolute position becomes 22865)</li>
+<li><tt class="docutils literal"><span class="pre">'max'</span></tt>: current position becomes the max absolute position (current absolute position becomes 32767)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This action is permited only with servo models DRS-0402 and DRS-0602.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyherkulex.Servo.reset_absolute_position_origin">
+<tt class="descname">reset_absolute_position_origin</tt><big>(</big><big>)</big><a class="headerlink" href="#pyherkulex.Servo.reset_absolute_position_origin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the absolute position origin to its initial state.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This action is permited only with servo models DRS-0402 and DRS-0602.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.speed_mode">
+<tt class="descname">speed_mode</tt><a class="headerlink" href="#pyherkulex.Servo.speed_mode" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get speed control mode state</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+<p>Servo.mode value is MODE_CONTROL and continuous rotation is in progress if speed mode is <tt class="docutils literal"><span class="pre">True</span></tt>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.operating_time">
+<tt class="descname">operating_time</tt><a class="headerlink" href="#pyherkulex.Servo.operating_time" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current operating time (max 2.856 second)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyherkulex.Servo.control_stop">
+<tt class="descname">control_stop</tt><big>(</big><em>led=0</em><big>)</big><a class="headerlink" href="#pyherkulex.Servo.control_stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop servo in its current position.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>led</strong> (<em>int</em>) &#8211; LED color among the supported values given as <a class="reference internal" href="constants.html#led-constants"><em>LED color constants</em></a>.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Control mode must be enabled before sending any control instruction to the servo.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.position">
+<tt class="descname">position</tt><a class="headerlink" href="#pyherkulex.Servo.position" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current (calibrated) position</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyherkulex.Servo.control_position">
+<tt class="descname">control_position</tt><big>(</big><em>position</em>, <em>time</em>, <em>led=0</em>, <em>velocity_override=True</em><big>)</big><a class="headerlink" href="#pyherkulex.Servo.control_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set new (calibrated) position.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>position</strong> (<em>int</em>) &#8211; Desired position.</li>
+<li><strong>time</strong> (<em>float</em>) &#8211; Time taken to move from present
+position to desired position.</li>
+<li><strong>led</strong> (<em>int</em>) &#8211; LED color among the supported values given as <a class="reference internal" href="constants.html#led-constants"><em>LED color constants</em></a>.</li>
+<li><strong>velocity_override</strong> (<em>bool</em>) &#8211; VOR is either <tt class="docutils literal"><span class="pre">True</span></tt> to enable it or <tt class="docutils literal"><span class="pre">False</span></tt> to disable it (if the servo model allows to disable VOR)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Control mode must be enabled before sending any control instruction to the servo.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyherkulex.Servo.control_position_increment">
+<tt class="descname">control_position_increment</tt><big>(</big><em>increment</em>, <em>time</em>, <em>led=0</em>, <em>velocity_override=True</em><big>)</big><a class="headerlink" href="#pyherkulex.Servo.control_position_increment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Increment current (calibrated) position.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>increment</strong> (<em>int</em>) &#8211; Desired increment to be added to the
+current position.</li>
+<li><strong>time</strong> (<em>int</em>) &#8211; Time taken to complete the increment
+from current position.</li>
+<li><strong>led</strong> (<em>int</em>) &#8211; LED color among the supported values given as <a class="reference internal" href="constants.html#led-constants"><em>LED color constants</em></a>.</li>
+<li><strong>velocity_override</strong> (<em>bool</em>) &#8211; either <tt class="docutils literal"><span class="pre">True</span></tt> to enable it or <tt class="docutils literal"><span class="pre">False</span></tt> to disable VOR (if the servo model allows it)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Control mode must be enabled before sending any control instruction to the servo.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.angle">
+<tt class="descname">angle</tt><a class="headerlink" href="#pyherkulex.Servo.angle" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current angular (calibrated) position in degree</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyherkulex.Servo.control_angle">
+<tt class="descname">control_angle</tt><big>(</big><em>angle</em>, <em>time</em>, <em>led=0</em>, <em>velocity_override=True</em><big>)</big><a class="headerlink" href="#pyherkulex.Servo.control_angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets new angular (calibrated) position.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>angle</strong> (<em>float</em>) &#8211; Desired angular position in degree.</li>
+<li><strong>time</strong> (<em>float</em>) &#8211; Time taken to move from present
+position to the desired position.</li>
+<li><strong>led</strong> (<em>int</em>) &#8211; LED color among the supported values given as <a class="reference internal" href="constants.html#led-constants"><em>LED color constants</em></a>.</li>
+<li><strong>velocity_override</strong> (<em>bool</em>) &#8211; VOR is either <tt class="docutils literal"><span class="pre">True</span></tt> to enable it or <tt class="docutils literal"><span class="pre">False</span></tt> to disable it (if the servo model allows to disable VOR)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Control mode must be enabled before sending any control instruction to the servo.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyherkulex.Servo.control_angle_increment">
+<tt class="descname">control_angle_increment</tt><big>(</big><em>increment</em>, <em>time</em>, <em>led=0</em>, <em>velocity_override=True</em><big>)</big><a class="headerlink" href="#pyherkulex.Servo.control_angle_increment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Increment current angular position.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>increment</strong> (<em>int</em>) &#8211; Desired angular increment to be added to
+the current angular position in degree.</li>
+<li><strong>time</strong> (<em>int</em>) &#8211; Time taken to complete the angular increment
+from current position.</li>
+<li><strong>led</strong> (<em>int</em>) &#8211; LED color among the supported values given as <a class="reference internal" href="constants.html#led-constants"><em>LED color constants</em></a>.</li>
+<li><strong>velocity_override</strong> (<em>bool</em>) &#8211; either <tt class="docutils literal"><span class="pre">True</span></tt> to enable it or <tt class="docutils literal"><span class="pre">False</span></tt> to disable VOR (if the servo model allows it)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Control mode must be enabled before sending any control instruction to the servo.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.native_speed">
+<tt class="descname">native_speed</tt><a class="headerlink" href="#pyherkulex.Servo.native_speed" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current native speed</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyherkulex.Servo.control_native_speed">
+<tt class="descname">control_native_speed</tt><big>(</big><em>speed</em>, <em>time</em>, <em>led=0</em>, <em>velocity_override=True</em><big>)</big><a class="headerlink" href="#pyherkulex.Servo.control_native_speed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set native speed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>speed</strong> (<em>int</em>) &#8211; Desired speed in native unit.</li>
+<li><strong>time</strong> (<em>int</em>) &#8211; Time taken to reach the desired speed
+from the current speed.</li>
+<li><strong>led</strong> (<em>int</em>) &#8211; LED color among the supported values given as <a class="reference internal" href="constants.html#led-constants"><em>LED color constants</em></a>.</li>
+<li><strong>velocity_override</strong> (<em>bool</em>) &#8211; VOR is either <tt class="docutils literal"><span class="pre">True</span></tt> to enable it or <tt class="docutils literal"><span class="pre">False</span></tt> to disable it (if the servo model allows to disable VOR)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Control mode must be enabled before sending any control instruction to the servo.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.speed">
+<tt class="descname">speed</tt><a class="headerlink" href="#pyherkulex.Servo.speed" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current speed in step/sec</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyherkulex.Servo.control_speed">
+<tt class="descname">control_speed</tt><big>(</big><em>speed</em>, <em>time</em>, <em>led=0</em>, <em>velocity_override=True</em><big>)</big><a class="headerlink" href="#pyherkulex.Servo.control_speed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set native speed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>speed</strong> (<em>float</em>) &#8211; Desired speed in step/second.</li>
+<li><strong>time</strong> (<em>float</em>) &#8211; Time taken to reach the desired speed
+from the current speed.</li>
+<li><strong>led</strong> (<em>int</em>) &#8211; LED color among the supported values given as <a class="reference internal" href="constants.html#led-constants"><em>LED color constants</em></a>.</li>
+<li><strong>velocity_override</strong> (<em>bool</em>) &#8211; VOR is either <tt class="docutils literal"><span class="pre">True</span></tt> to enable it or <tt class="docutils literal"><span class="pre">False</span></tt> to disable it (if the servo model allows to disable VOR)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Control mode must be enabled before sending any control instruction to the servo.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.angular_speed">
+<tt class="descname">angular_speed</tt><a class="headerlink" href="#pyherkulex.Servo.angular_speed" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current angular speed in degree/second</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyherkulex.Servo.control_angular_speed">
+<tt class="descname">control_angular_speed</tt><big>(</big><em>speed</em>, <em>time</em>, <em>led=0</em>, <em>velocity_override=True</em><big>)</big><a class="headerlink" href="#pyherkulex.Servo.control_angular_speed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set angular speed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>speed</strong> (<em>float</em>) &#8211; Desired speed in degree/second.</li>
+<li><strong>time</strong> (<em>float</em>) &#8211; Time taken to reach the desired speed
+from the current speed.</li>
+<li><strong>led</strong> (<em>int</em>) &#8211; LED color among the supported values given as <a class="reference internal" href="constants.html#led-constants"><em>LED color constants</em></a>.</li>
+<li><strong>velocity_override</strong> (<em>bool</em>) &#8211; VOR is either <tt class="docutils literal"><span class="pre">True</span></tt> to enable it or <tt class="docutils literal"><span class="pre">False</span></tt> to disable it (if the servo model allows to disable VOR)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Control mode must be enabled before sending any control instruction to the servo.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.absolute_position">
+<tt class="descname">absolute_position</tt><a class="headerlink" href="#pyherkulex.Servo.absolute_position" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current absolute position</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.absolute_angle">
+<tt class="descname">absolute_angle</tt><a class="headerlink" href="#pyherkulex.Servo.absolute_angle" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current absolute angle</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.absolute_raw_position">
+<tt class="descname">absolute_raw_position</tt><a class="headerlink" href="#pyherkulex.Servo.absolute_raw_position" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current absolute raw position
+(from potentiometer)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This argument is available only with servo models DRS-0402 and DRS-0602.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="control-sensors">
+<span id="id7"></span><h2><a class="reference internal" href="#control-sensors-top"><em>Control sensors</em></a><a class="headerlink" href="#control-sensors" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt>
+<em class="property">class </em><tt class="descname">Servo</tt></dt>
+<dd><dl class="attribute">
+<dt id="pyherkulex.Servo.absolute_raw_angle">
+<tt class="descname">absolute_raw_angle</tt><a class="headerlink" href="#pyherkulex.Servo.absolute_raw_angle" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current absolute raw angle in degree
+(from potentiometer)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This argument is available only with servo models DRS-0402 and DRS-0602.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.absolute_goal_position">
+<tt class="descname">absolute_goal_position</tt><a class="headerlink" href="#pyherkulex.Servo.absolute_goal_position" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current absolute goal position</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.absolute_goal_angle">
+<tt class="descname">absolute_goal_angle</tt><a class="headerlink" href="#pyherkulex.Servo.absolute_goal_angle" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current absolute goal angle</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.absolute_intermediate_goal_position">
+<tt class="descname">absolute_intermediate_goal_position</tt><a class="headerlink" href="#pyherkulex.Servo.absolute_intermediate_goal_position" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current absolute intermediate goal position</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.absolute_intermediate_goal_angle">
+<tt class="descname">absolute_intermediate_goal_angle</tt><a class="headerlink" href="#pyherkulex.Servo.absolute_intermediate_goal_angle" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current absolute intermediate goal angle</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.intermediate_native_goal_speed">
+<tt class="descname">intermediate_native_goal_speed</tt><a class="headerlink" href="#pyherkulex.Servo.intermediate_native_goal_speed" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current intermediate native goal speed</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.intermediate_absolute_goal_speed">
+<tt class="descname">intermediate_absolute_goal_speed</tt><a class="headerlink" href="#pyherkulex.Servo.intermediate_absolute_goal_speed" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current intermediate absolute goal speed in step/second</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.intermediate_angular_goal_speed">
+<tt class="descname">intermediate_angular_goal_speed</tt><a class="headerlink" href="#pyherkulex.Servo.intermediate_angular_goal_speed" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current intermediate angular goal speed in degree/second</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.pwm">
+<tt class="descname">pwm</tt><a class="headerlink" href="#pyherkulex.Servo.pwm" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get current pulse width modulation value.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">int from -1023 to 1023</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">PWM can be considered as a torque like quantity.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="other-sensors">
+<span id="id8"></span><h2><a class="reference internal" href="#other-sensors-top"><em>Other sensors</em></a><a class="headerlink" href="#other-sensors" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt>
+<em class="property">class </em><tt class="descname">Servo</tt></dt>
+<dd><dl class="attribute">
+<dt id="pyherkulex.Servo.voltage">
+<tt class="descname">voltage</tt><a class="headerlink" href="#pyherkulex.Servo.voltage" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get voltage</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyherkulex.Servo.temperature">
+<tt class="descname">temperature</tt><a class="headerlink" href="#pyherkulex.Servo.temperature" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Get temperature in degree Celsius</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="functions.html" class="btn btn-neutral float-right" title="Various functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="gettingstarted.html" class="btn btn-neutral float-left" title="Get started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        
+        &copy; <a href="copyright.html">Copyright</a> 2020, Guenhael LE QUILLIEC
+      <span class="lastupdated">
+        Last updated on Mar 31, 2020.
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

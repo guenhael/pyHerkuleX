@@ -1,0 +1,5 @@
+======================================
+Exception class
+======================================
+
+.. autoexception:: pyherkulex.PyHerkuleX_Exception

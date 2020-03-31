@@ -1,0 +1,7 @@
+======================================
+Servo class
+======================================
+
+.. currentmodule:: pyherkulex
+
+.. include:: ../pyherkulex_sphinx_build/servo.RST
