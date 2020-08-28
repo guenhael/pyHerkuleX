@@ -11,6 +11,7 @@ PDF manuals
  - :download:`Herkulex DRS-0402 manual <downloads/Herkulex_Manual_0402_20140804.pdf>`
  - :download:`Herkulex DRS-0601 manual <downloads/Herkulex_Manual_0601_20140804.pdf>`
  - :download:`Herkulex DRS-0602 manual <downloads/Herkulex_Manual_0602_20140804.pdf>`
+ - :download:`Herkulex Manager Kit manual <downloads/Herkulex_Manager_Kit_Manual.pdf>`
 
 
 CAD files
