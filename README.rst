@@ -99,11 +99,11 @@ with default baudrate 115200.
    =========================== END README ============================
    ===================================================================
 
-.. |release| replace:: 1.0.0
+.. |release| replace:: 1.1.0
 
 
-.. |release-shield| image:: https://img.shields.io/badge/Release-v1.0.0-yellow.svg
-   :alt: Release 1.0.0
+.. |release-shield| image:: https://img.shields.io/badge/Release-v1.1.0-yellow.svg
+   :alt: Release 1.1.0
    :target: #
 
 

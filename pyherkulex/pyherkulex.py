@@ -33,7 +33,7 @@ __author__     = 'Guenhael LE QUILLIEC'
 __copyright__  = 'Copyright 2020, Guenhael LE QUILLIEC'
 __credits__    = ['Guenhael LE QUILLIEC']
 __license__    = 'GNU General Public License - 3.0-or-later'
-__version__    = '1.0.0'
+__version__    = '1.1.0'
 __maintainer__ = 'Guenhael LE QUILLIEC'
 __email__      = 'contact@guenhael.com'
 __status__     = 'Production'
@@ -221,7 +221,7 @@ MSG_SATUS_DETAIL = ('Moving',                        # Moving flag
 # Packet header
 HEADER = struct.pack('2B',0xFF,0xFF)
 
-# Last opened serial connection)
+# Last opened serial connection
 LAST_SERIAL = None
 
 # XOR lambda function
@@ -269,7 +269,7 @@ def _check_port(port):
     """
     if port is None:
         if platform.system() == 'Windows':
-            port = 'COM1'
+            port = 'COM3'
         elif platform.system() == 'Linux':
             ports = glob.glob('/dev/ttyUSB*')
             if ports:
@@ -277,7 +277,7 @@ def _check_port(port):
             else:
                 ports = glob.glob('/dev/ttyS*')
                 if ports:
-                    port = ports[0]                
+                    port = ports[0]
         elif platform.system() == 'Darwin':
             from serial.tools.list_ports import comports
             for p in comports():
@@ -294,9 +294,12 @@ def serial(port = None, baudrate = 115200, timeout = 1.0):
     Open the serial port where HerkuleX servo communication
     bus is attached.
 
+    The output serial port will be considered as default serial port
+    anytime a serial port instance is required but not specified.
+
     :param str port: Serial port name.
                      If not specified, its considered value will be
-                     ``'COM1'`` if using Windows,
+                     ``'COM3'`` if using Windows,
                      the first ``'/dev/ttyUSB*'`` or ``'/dev/ttyS*'`` found if using Linux or
                      the first ``'/dev/tty.usbserial-*'`` found if using OSx.
 
@@ -328,11 +331,11 @@ def find(number = None, port = None, baudrate = BAUDRATES, timeout = 0.05, fast 
 
     :param int number: Number of servos supposed to be connected to serial bus.
 
-    :param str port: Serial port name.
-                     If not specified, the considered value will be
-                     ``'COM1'`` if using Windows,
-                     the first ``'/dev/ttyUSB*'`` or ``'/dev/ttyS*'`` found if using Linux or
-                     the first ``'/dev/tty.usbserial-*'`` found if using OSx.
+    :param str port: Serial port name or tuple of several port names to be successively tested.
+                     If not specified, each available port will be checked successively,
+                     ``'COM1'`` to ``'COM256'`` if using Windows,
+                     any ``'/dev/ttyUSB*'`` and ``'/dev/ttyS*'`` if using Linux or
+                     any ``'/dev/tty.usbserial-'`` if using OSx.
 
     :param int baudrate: Baud rate, or tuple of several baud rate values
                          to be successively tested.
@@ -345,84 +348,117 @@ def find(number = None, port = None, baudrate = BAUDRATES, timeout = 0.05, fast 
 
     :param bool verbose: Print scanning progression.
 
-    :return: Dictionary mapping connected servo IDs to tuples
-             containing two items each (servo model, baudrate).
-    :rtype:  dict 
+    :return: Dictionary mapping successfully tested ports
+             to dictionaries mapping connected servo IDs
+             to tuples containing two items each (servo model, baudrate).
+    :rtype:  dict
     """
-    port = _check_port(port)
+    ports = port
+    if ports is None:
+        if platform.system() == 'Windows':
+            ports = ['COM%s' % (i + 1) for i in range(256)]
+        elif platform.system() == 'Linux':
+            ports = glob.glob('/dev/ttyUSB*') + glob.glob('/dev/ttyS*')
+        elif platform.system() == 'Darwin':
+            from serial.tools.list_ports import comports
+            ports = []
+            for p in comports():
+                if p.serial_number:
+                    ports.append('/dev/tty.usbserial-'+p.serial_number)
+    elif ports is str:
+        ports = [ports]
     if isinstance(baudrate, int):
         baudrate = (baudrate,)
-    serial = srl.Serial(port, baudrate[0], timeout = timeout)
+
     servos = {}
-    _servos = {}
-    for br in baudrate:
-        serial.baudrate = br
-        if fast:
-            data = [7, BROADCASTING_ID, REQ_STAT]
-            check_sum1 = reduce(xor,data)&0xFE
-            data.insert(3, check_sum1)
-            check_sum2 = (~check_sum1)&0xFE
-            data.insert(4, check_sum2)
-            found = False
-            if verbose:
-                print("Broadcast fast scanning with serial baudrate %i"%br)
-            try:
-                serial.write(HEADER + struct.pack(str(5)+'B',*data))
-                found = serial.read(9)
-            except:
-                pass
-        else:
-            found = True
-        if found:
-            for servoid in range(0x00, 0xFE):
-                if servoid in servos:
-                    continue
-                data = [7, servoid, REQ_STAT]
+    for port in ports:
+        servos[port]= {}
+        try:
+            serial = srl.Serial(port, baudrate[0], timeout = timeout)
+        except (OSError, srl.SerialException):
+            break
+        if verbose:
+            print("Scanning port "+port)
+        _servos = {}
+        for br in baudrate:
+            serial.baudrate = br
+            if fast:
+                data = [7, BROADCASTING_ID, REQ_STAT]
                 check_sum1 = reduce(xor,data)&0xFE
                 data.insert(3, check_sum1)
                 check_sum2 = (~check_sum1)&0xFE
                 data.insert(4, check_sum2)
                 found = False
                 if verbose:
-                    print("Serial baudrate %i"%br+", scanning id %i"%servoid+" (0x%02X"%servoid+")")
+                    print(" "*4+"Broadcast fast scanning with serial baudrate %i"%br)
                 try:
                     serial.write(HEADER + struct.pack(str(5)+'B',*data))
                     found = serial.read(9)
                 except:
                     pass
-                if found:
-                    serial.timeout = 1.0
-                    srv = Servo(servoid, serial)
-                    servos[servoid] = (srv.MODEL ,br)
-                    _servos[servoid] = (srv, srv.status)
-                    serial.timeout = timeout
-                    if verbose:
-                        print(" "*21+"Found servo id %i"%servoid+" (0x%02X"%servoid+") model %i"%servos[servoid][0])
-                    if number == len(servos):
-                        break
-        if number == len(servos):
-            break
-    if verbose:
-        if len(servos)>0:
-            message = '\n'
-            if number:
-                if number != len(servos): 
-                    message = 'Only '
-            if len(servos)>1:
-                print(message+"%i servos found:"%len(servos))
             else:
-                print(message+"%i servo found:"%len(servos))
-            for servoid in servos:
-                print("   id %i"%servoid+" (0x%02X"%servoid+")    model %i"%servos[servoid][0]+"    baudrate %i"%servos[servoid][1])
-        else:
+                found = True
+            if found:
+                for servoid in range(0x00, 0xFE):
+                    if servoid in servos[port]:
+                        continue
+                    data = [7, servoid, REQ_STAT]
+                    check_sum1 = reduce(xor,data)&0xFE
+                    data.insert(3, check_sum1)
+                    check_sum2 = (~check_sum1)&0xFE
+                    data.insert(4, check_sum2)
+                    found = False
+                    if verbose:
+                        print(" "*4+"Serial baudrate %i"%br+", scanning id %i"%servoid+" (0x%02X"%servoid+")")
+                    try:
+                        serial.write(HEADER + struct.pack(str(5)+'B',*data))
+                        found = serial.read(9)
+                    except:
+                        pass
+                    if found:
+                        serial.timeout = 1.0
+                        srv = Servo(servoid, serial)
+                        servos[port][servoid] = (srv.MODEL ,br)
+                        _servos[servoid] = (srv, srv.status)
+                        serial.timeout = timeout
+                        if verbose:
+                            print(" "*25+"Found servo id %i"%servoid+" (0x%02X"%servoid+") model %i"%servos[port][servoid][0])
+                        if number == len(servos[port]):
+                            break
+            if number == len(servos[port]):
+                break
+        for servoid in servos[port]:
+            serial.timeout = 1.0
+            serial.baudrate = servos[port][servoid][1]
+            srv = _servos[servoid][0]
+            # Restore the initial error state as it might have been affected during scanning
+            srv._ram_write(RAM_STATUS_ERROR, _servos[servoid][1][0], _servos[servoid][1][1])
+        serial.close()
+
+    if verbose:
+        found = False
+        for port in servos:
+            if len(servos[port])>0:
+                found = True
+                message = '\n'
+                if number:
+                    if number != len(servos[port]):
+                        message = 'Only '
+                if len(servos[port])>1:
+                    print(message+"%i servos found"%len(servos[port]) + " on port "+port+":")
+                else:
+                    print(message+"%i servo found"%len(servos[port]) + " on port "+port+":")
+                for servoid in servos[port]:
+                    print("   id %i"%servoid+" (0x%02X"%servoid+")    model %i"%servos[port][servoid][0]+"    baudrate %i"%servos[port][servoid][1])
+        if not found:
             print("No servo found.")
-    for servoid in servos:
-        serial.timeout = 1.0
-        serial.baudrate = servos[servoid][1]
-        srv = _servos[servoid][0]
-        # Restore the initial error state as it might have been affected during scanning
-        srv._ram_write(RAM_STATUS_ERROR, _servos[servoid][1][0], _servos[servoid][1][1])
-    return servos
+
+    out = {}
+    for port in servos:
+        if len(servos[port])>0:
+            out[port] = servos[port]
+
+    return out
 
 def independent_control(*instructions):
     """
@@ -533,14 +569,14 @@ def simultaneous_control(time, *instructions):
         Both servos have the same operating goal time of 1.5 second.
 
         .. code-block:: python
-        
+
             #!/usr/bin/env python
 
             import pyherkulex as hx
 
             srv1 = hx.Servo(0x01)
             srv2 = hx.Servo(0x02)
-            
+
             srv1.mode = srv2.mode = hx.MODE_CONTROL
 
             hx.simultaneous_control(1.5, (srv1, -10.0),
@@ -601,7 +637,7 @@ class PyHerkuleX_Exception(Exception):
 class Servo(object):
     """
     Represent a connected Smart HerkuleX Actuator.
-    
+
     Servo class allows to establish serial connection with servos,
     access configuration parameters, get sensor feedbacks and
     send control instructions.
@@ -613,7 +649,7 @@ class Servo(object):
     :param serial.Serial serial: port instance of :obj:`serial.Serial` .
         If not provided, the last used serial port will be used.
         If no serial port were used yet, an auto detection will be attempted.
-    
+
     :example:
         .. code-block:: python
 
@@ -635,7 +671,7 @@ class Servo(object):
             # (considering the last used serial port
             # as no specific port parameter is provided)
             srv1 = hx.Servo(0x01)
-            
+
             # Check first if there is any error status
             if srv1.satus[0]:
                 # Print status and raise an exception
@@ -655,7 +691,7 @@ class Servo(object):
             # to be completed in an operating goal time of 2 second
             # and light LED in blue
             srv1.control_angle(angle0+10.0, 2.0, hx.LED_BLUE)
-            
+
             # Wait for control instruction to be completed
             time.sleep(2.0)
 
@@ -749,7 +785,7 @@ class Servo(object):
                 len0 = struct.unpack('1B',self.serial.read(3)[2:3])[0]-3
                 if struct.unpack('1B',self.serial.read(len0)[1:2])[0] != data[2]+0x40:
                     raise PyHerkuleX_Exception("Wrong acknowledgement with servo ID: 0x%02X"%self._id)
-                
+
     def _ram_read(self, register, length = 2):
         """
         Read the RAM register from the HerkuleX servo port.
@@ -836,6 +872,12 @@ class Servo(object):
             raise PyHerkuleX_Exception("Attempt to set a value ("+str(value)+") bellow the minimal value ("+str(rng[0])+") to servo ID: 0x%02X"%self._id)
         if value > rng[1]:
             raise PyHerkuleX_Exception("Attempt to set a value ("+str(value)+") over the maximal value ("+str(rng[1])+")  to servo ID: 0x%02X"%self._id)
+
+    def _check_range_coef(self, value, rng, coef):
+        """
+        Check if the given value is in the permited range multiplied by a given coefficient.
+        """
+        self._check_range(self, value, [coef*i for i in rng])
 
     def _position_to_angle(self, position):
         """
@@ -933,7 +975,7 @@ class Servo(object):
     def reset(self, idskip = True, baudrateskip = True, sleep = 2.0):
         """
         Reset all memory registers to factory default values.
-        
+
         :param bool idskip: Set to True to skip ID reset.
         :param bool baudrateskip: Set to True to skip baud rate reset.
         :param float sleep: Suspension time for rebooting.
@@ -947,7 +989,7 @@ class Servo(object):
     def reboot(self, sleep = 2.0):
         """
         Reboot and copy data from EEPROM register to RAM register.
-        
+
         :param float sleep: Suspension time for rebooting.
         """
         self._write(REQ_REBOOT)
@@ -977,7 +1019,7 @@ class Servo(object):
                                 print('    - '+MSG_SATUS_ERROR[i]+': '+MSG_SATUS_DETAIL[j])
                     else:
                         print('    - '+MSG_SATUS_ERROR[i])
-                    
+
         else:
             print('    - None')
         print('Status details:')
@@ -1071,8 +1113,8 @@ class Servo(object):
             # If there is no ID so far
             if self._id is None:
                 # This is possible only if a prior factory rollback was called
-                self.__init__(servoid = value, serial = self.serial)   
-            else:             
+                self.__init__(servoid = value, serial = self.serial)
+            else:
                 # Set the new ID
                 self._ram_write(RAM_ID, value)
                 # Update the ID variable
@@ -1099,7 +1141,7 @@ class Servo(object):
         :getter: Get LED color
         :setter: Set LED color
         :type:   int
-        
+
         Supported values are given as :ref:`LED color constants <led-constants>`.
         """
         return self._ram_read_single(RAM_LED_CONTROL)
@@ -1516,7 +1558,7 @@ class Servo(object):
         return self._voltage_res*self._ram_read_single(RAM_MIN_VOLTAGE)
     @min_voltage.setter
     def min_voltage(self, value):
-        self._check_range(value, self._voltage_res*RANGE_VOLTAGE[self._model_4or6])
+        self._check_range_coef(value, RANGE_VOLTAGE[self._model_4or6], self._voltage_res)
         self._ram_write(RAM_MIN_VOLTAGE, int(round(value/self._voltage_res)))
     @property
     def min_voltage_eeprom(self):
@@ -1528,7 +1570,7 @@ class Servo(object):
         return self._voltage_res*self._eep_read_single(EEP_MIN_VOLTAGE)
     @min_voltage_eeprom.setter
     def min_voltage_eeprom(self, value = None):
-        self._check_range(value, self._voltage_res*RANGE_VOLTAGE[self._model_4or6])
+        self._check_range_coef(value, RANGE_VOLTAGE[self._model_4or6], self._voltage_res)
         self._eep_write(EEP_MIN_VOLTAGE, int(round(value/self._voltage_res)))
 # 14
     @property
@@ -1541,7 +1583,7 @@ class Servo(object):
         return self._voltage_res*self._ram_read_single(RAM_MAX_VOLTAGE)
     @max_voltage.setter
     def max_voltage(self, value):
-        self._check_range(value, self._voltage_res*RANGE_VOLTAGE[self._model_4or6])
+        self._check_range_coef(value, RANGE_VOLTAGE[self._model_4or6], self._voltage_res)
         self._ram_write(RAM_MAX_VOLTAGE, int(round(value/self._voltage_res)))
     @property
     def max_voltage_eeprom(self):
@@ -1553,7 +1595,7 @@ class Servo(object):
         return self._voltage_res*self._eep_read_single(EEP_MAX_VOLTAGE)
     @max_voltage_eeprom.setter
     def max_voltage_eeprom(self, value):
-        self._check_range(value, self._voltage_res*RANGE_VOLTAGE[self._model_4or6])
+        self._check_range_coef(value, RANGE_VOLTAGE[self._model_4or6], self._voltage_res)
         self._eep_write(EEP_MAX_VOLTAGE, int(round(value/self._voltage_res)))
 # 33
     @property
@@ -1566,7 +1608,7 @@ class Servo(object):
         return 0.0112*self._ram_read_single(RAM_LED_BLINK_PERIOD)
     @alarm_led_period.setter
     def alarm_led_period(self, value):
-        self._check_range(value, 0.0112*RANGE_LED_BLINK_PERIOD)
+        self._check_range_coef(value, RANGE_LED_BLINK_PERIOD, 0.0112)
         self._ram_write(RAM_LED_BLINK_PERIOD, int(round(value/0.0112)))
     @property
     def alarm_led_period_eeprom(self):
@@ -1578,7 +1620,7 @@ class Servo(object):
         return 0.0112*self._eep_read_single(EEP_LED_BLINK_PERIOD)
     @alarm_led_period_eeprom.setter
     def alarm_led_period_eeprom(self, value):
-        self._check_range(value, 0.0112*RANGE_LED_BLINK_PERIOD)
+        self._check_range_coef(value, RANGE_LED_BLINK_PERIOD, 0.0112)
         self._eep_write(EEP_LED_BLINK_PERIOD, int(round(value/0.0112)))
 # 34
     @property
@@ -1591,7 +1633,7 @@ class Servo(object):
         return 0.0112*self._ram_read_single(RAM_ADC_FAULT_CHECK_PERIOD)
     @fault_check_period.setter
     def fault_check_period(self, value):
-        self._check_range(value, 0.0112*RANGE_ADC_FAULT_CHECK_PERIOD)
+        self._check_range_coef(value, RANGE_ADC_FAULT_CHECK_PERIOD, 0.0112)
         self._ram_write(RAM_ADC_FAULT_CHECK_PERIOD, int(round(value/0.0112)))
     @property
     def fault_check_period_eeprom(self):
@@ -1603,7 +1645,7 @@ class Servo(object):
         return 0.0112*self._eep_read_single(EEP_ADC_FAULT_CHECK_PERIOD)
     @fault_check_period_eeprom.setter
     def fault_check_period_eeprom(self, value):
-        self._check_range(value, 0.0112*RANGE_ADC_FAULT_CHECK_PERIOD)
+        self._check_range_coef(value, RANGE_ADC_FAULT_CHECK_PERIOD, 0.0112)
         self._eep_write(EEP_ADC_FAULT_CHECK_PERIOD, int(round(value/0.0112)))
 # 35
     @property
@@ -1616,7 +1658,7 @@ class Servo(object):
         return 0.0112*self._ram_read_single(RAM_PACKET_GARBAGE_CHECK_PERIOD)
     @packet_garbage_check_period.setter
     def packet_garbage_check_period(self, value):
-        self._check_range(value, 0.0112*RANGE_PACKET_GARBAGE_CHECK_PERIOD)
+        self._check_range_coef(value, RANGE_PACKET_GARBAGE_CHECK_PERIOD, 0.0112)
         self._ram_write(RAM_PACKET_GARBAGE_CHECK_PERIOD, int(round(value/0.0112)))
     @property
     def packet_garbage_check_period_eeprom(self):
@@ -1628,7 +1670,7 @@ class Servo(object):
         return 0.0112*self._eep_read_single(EEP_PACKET_GARBAGE_CHECK_PERIOD)
     @packet_garbage_check_period_eeprom.setter
     def packet_garbage_check_period_eeprom(self, value):
-        self._check_range(value, 0.0112*RANGE_PACKET_GARBAGE_CHECK_PERIOD)
+        self._check_range_coef(value, RANGE_PACKET_GARBAGE_CHECK_PERIOD, 0.0112)
         self._eep_write(EEP_PACKET_GARBAGE_CHECK_PERIOD, int(round(value/0.0112)))
 # 15
     @property
@@ -1643,7 +1685,7 @@ class Servo(object):
         return 0.01*self._ram_read_single(RAM_ACCELERATION_RATIO)
     @acceleration_ratio.setter
     def acceleration_ratio(self, value):
-        self._check_range(value, 0.01*RANGE_ACCELERATION_RATIO)
+        self._check_range_coef(value, RANGE_ACCELERATION_RATIO, 0.01)
         self._ram_write(RAM_ACCELERATION_RATIO, int(round(value*100)))
     @property
     def acceleration_ratio_eeprom(self):
@@ -1657,7 +1699,7 @@ class Servo(object):
         return 0.01*self._eep_read_single(EEP_ACCELERATION_RATIO)
     @acceleration_ratio_eeprom.setter
     def acceleration_ratio_eeprom(self, value):
-        self._check_range(value, 0.01*RANGE_ACCELERATION_RATIO)
+        self._check_range_coef(value, RANGE_ACCELERATION_RATIO, 0.01)
         self._eep_write(EEP_ACCELERATION_RATIO, int(round(value*100)))
 # 16
     @property
@@ -1670,7 +1712,7 @@ class Servo(object):
         return 0.0112*self._ram_read_single(RAM_MAX_ACCELERATION_TIME)
     @max_acceleration_time.setter
     def max_acceleration_time(self, value):
-        self._check_range(value, 0.0112*RANGE_MAX_ACCELERATION_TIME)
+        self._check_range_coef(value, RANGE_MAX_ACCELERATION_TIME, 0.0112)
         self._ram_write(RAM_MAX_ACCELERATION_TIME, int(round(value/0.0112)))
     @property
     def max_acceleration_time_eeprom(self):
@@ -1682,7 +1724,7 @@ class Servo(object):
         return 0.0112*self._eep_read_single(EEP_MAX_ACCELERATION_TIME)
     @max_acceleration_time_eeprom.setter
     def max_acceleration_time_eeprom(self, value):
-        self._check_range(value, 0.0112*RANGE_MAX_ACCELERATION_TIME)
+        self._check_range_coef(value, RANGE_MAX_ACCELERATION_TIME, 0.0112)
         self._eep_write(EEP_MAX_ACCELERATION_TIME, int(round(value/0.0112)))
 # 17
     @property
@@ -1694,7 +1736,7 @@ class Servo(object):
 
         The dead zone value corresponds to the permited difference (in step)
         between goal position and actual position.
-        
+
         If the difference (error) is less than the dead zone value,
         servo assumes it has reached the goal position and stops.
         """
@@ -1722,7 +1764,7 @@ class Servo(object):
         :getter: Get saturator offset
         :setter: Set saturator offset
         :type:   int
-        
+
         Saturator offset corresponds to the PWM prescribed value
         when the servo reaches the dead zone boundary.
         """
@@ -1750,7 +1792,7 @@ class Servo(object):
         :getter: Get saturator slop
         :setter: Set saturator slop
         :type:   int
-        
+
         This value corresponds to the slop of the linear transition
         of the PWM from the saturator offset value
         to the maximum PWM value versus position.
@@ -1759,7 +1801,7 @@ class Servo(object):
         return (data[1]<<8|data[0])/256.0
     @saturator_slope.setter
     def saturator_slope(self, value):
-        self._check_range(value, RANGE_SATURATOR_SLOPE/256.0)
+        self._check_range_coef(value, RANGE_SATURATOR_SLOPE, 0.00390625)
         value = int(round(value * 256))
         self._ram_write(RAM_SATURATOR_SLOPE, value&0xFF, value>>8)
     @property
@@ -1773,7 +1815,7 @@ class Servo(object):
         return (data[1]<<8|data[0])/256.0
     @saturator_slope_eeprom.setter
     def saturator_slope_eeprom(self, value):
-        self._check_range(value, RANGE_SATURATOR_SLOPE/256.0)
+        self._check_range_coef(value, RANGE_SATURATOR_SLOPE, 0.00390625)
         value = int(round(value * 256))
         self._eep_write(EEP_SATURATOR_SLOPE, int(value)&0xFF, int(value)>>8)
 # 20
@@ -1786,7 +1828,7 @@ class Servo(object):
 
         Prescribed PWM will be increased by the amount of the offset.
         This offset acts similar to a compensator when constant loads
-        are applied on the servo (e.g. from gravity). 
+        are applied on the servo (e.g. from gravity).
         """
         value = self._ram_read_single(RAM_PWM_OFFSET)
         if value > 127:
@@ -1886,7 +1928,7 @@ class Servo(object):
         :getter: Get PWM overload threshold
         :setter: Set PWM overload threshold
         :type:   int
-        
+
         Overload activates when external load is greater than
         PWM overload threshold.
         Overload never activates when the PWM overload threshold
@@ -1987,7 +2029,7 @@ class Servo(object):
         return (data[1]<<8|data[0])/8
     @position_gain_p.setter
     def position_gain_p(self, value):
-        self._check_range(value, RANGE_POSITION_KP/8.0)
+        self._check_range_coef(value, RANGE_POSITION_KP, 0.125)
         value = int(round(value * 8))
         self._ram_write(RAM_POSITION_KP, value&0xFF, value>>8)
     @property
@@ -2001,7 +2043,7 @@ class Servo(object):
         return (data[1]<<8|data[0])/8
     @position_gain_p_eeprom.setter
     def position_gain_p_eeprom(self, value):
-        self._check_range(value, RANGE_POSITION_KP/8.0)
+        self._check_range_coef(value, RANGE_POSITION_KP, 0.125)
         value = int(round(value * 8))
         self._eep_write(EEP_POSITION_KP, value&0xFF, value>>8)
 #
@@ -2016,7 +2058,7 @@ class Servo(object):
         return (data[1]<<8|data[0])/16384
     @position_gain_i.setter
     def position_gain_i(self, value):
-        self._check_range(value, RANGE_POSITION_KI/16384.0)
+        self._check_range_coef(value, RANGE_POSITION_KI, 1.0/16384.0)
         value = int(round(value * 16384))
         self._ram_write(RAM_POSITION_KI, value&0xFF, value>>8)
     @property
@@ -2030,7 +2072,7 @@ class Servo(object):
         return (data[1]<<8|data[0])/16384
     @position_gain_i_eeprom.setter
     def position_gain_i_eeprom(self, value):
-        self._check_range(value, RANGE_POSITION_KI/16384.0)
+        self._check_range_coef(value, RANGE_POSITION_KI, 1.0/16384.0)
         value = int(round(value * 16384))
         self._eep_write(EEP_POSITION_KI, value&0xFF, value>>8)
 #
@@ -2045,7 +2087,7 @@ class Servo(object):
         return (data[1]<<8|data[0])/8
     @position_gain_d.setter
     def position_gain_d(self, value):
-        self._check_range(value, RANGE_POSITION_KD/8.0)
+        self._check_range_coef(value, RANGE_POSITION_KD, 0.125)
         value = int(round(value * 8))
         self._ram_write(RAM_POSITION_KD, value&0xFF, value>>8)
     @property
@@ -2059,7 +2101,7 @@ class Servo(object):
         return (data[1]<<8|data[0])/8
     @position_gain_d_eeprom.setter
     def position_gain_d_eeprom(self, value):
-        self._check_range(value, RANGE_POSITION_KD/8.0)
+        self._check_range_coef(value, RANGE_POSITION_KD, 0.125)
         value = int(round(value * 8))
         self._eep_write(EEP_POSITION_KD, value&0xFF, value>>8)
 # 29
@@ -2139,7 +2181,7 @@ class Servo(object):
     @velocity_gain_p.setter
     def velocity_gain_p(self, value):
         if self._magnetic_encoder:
-            self._check_range(value, RANGE_VELOCITY_KP/64.0)
+            self._check_range_coef(value, RANGE_VELOCITY_KP, 0.015625)
             value = int(round(value * 64))
             self._ram_write(RAM_VELOCITY_KP, value&0xFF, value>>8)
         else:
@@ -2162,7 +2204,7 @@ class Servo(object):
     @velocity_gain_p_eeprom.setter
     def velocity_gain_p_eeprom(self, value):
         if self._magnetic_encoder:
-            self._check_range(value, RANGE_VELOCITY_KP/64.0)
+            self._check_range_coef(value, RANGE_VELOCITY_KP, 0.015625)
             value = int(round(value * 64))
             self._eep_write(EEP_VELOCITY_KP, value&0xFF, value>>8)
         else:
@@ -2186,7 +2228,7 @@ class Servo(object):
     @velocity_gain_i.setter
     def velocity_gain_i(self, value):
         if self._magnetic_encoder:
-            self._check_range(value, RANGE_VELOCITY_KI/16384.0)
+            self._check_range_coef(value, RANGE_VELOCITY_KI, 1.0/16384.0)
             value = int(round(value * 16384))
             self._ram_write(RAM_VELOCITY_KI, value&0xFF, value>>8)
         else:
@@ -2209,7 +2251,7 @@ class Servo(object):
     @velocity_gain_i_eeprom.setter
     def velocity_gain_i_eeprom(self, value):
         if self._magnetic_encoder:
-            self._check_range(value, RANGE_VELOCITY_KI/16384.0)
+            self._check_range_coef(value, RANGE_VELOCITY_KI, 1.0/16384.0)
             value = int(round(value * 16384))
             self._eep_write(EEP_VELOCITY_KI, value&0xFF, value>>8)
         else:
@@ -2221,13 +2263,13 @@ class Servo(object):
         :getter: Get stop detection period
         :setter: Set stop detection period
         :type:   float
-        
+
         Servo stop is confirmed if stoppage lasts for detection period time.
         """
         return 0.0112*self._ram_read_single(RAM_STOP_DETECTION_PERIOD)
     @stop_detection_period.setter
     def stop_detection_period(self, value):
-        self._check_range(value, 0.0112*RANGE_STOP_DETECTION_PERIOD)
+        self._check_range_coef(value, RANGE_STOP_DETECTION_PERIOD, 0.0112)
         self._ram_write(RAM_STOP_DETECTION_PERIOD, int(round(value/0.0112)))
     @property
     def stop_detection_period_eeprom(self):
@@ -2239,7 +2281,7 @@ class Servo(object):
         return 0.0112*self._eep_read_single(EEP_STOP_DETECTION_PERIOD)
     @stop_detection_period_eeprom.setter
     def stop_detection_period_eeprom(self, value):
-        self._check_range(value, 0.0112*RANGE_STOP_DETECTION_PERIOD)
+        self._check_range_coef(value, RANGE_STOP_DETECTION_PERIOD, 0.0112)
         self._eep_write(EEP_STOP_DETECTION_PERIOD, int(round(value/0.0112)))
 # 37
     @property
@@ -2252,7 +2294,7 @@ class Servo(object):
         return 0.0112*self._ram_read_single(RAM_OVERLOAD_DETECTION_PERIOD)
     @overload_detection_period.setter
     def overload_detection_period(self, value):
-        self._check_range(value, 0.0112*RANGE_OVERLOAD_DETECTION_PERIOD)
+        self._check_range_coef(value, RANGE_OVERLOAD_DETECTION_PERIOD, 0.0112)
         self._ram_write(RAM_OVERLOAD_DETECTION_PERIOD, int(round(value/0.0112)))
     @property
     def overload_detection_period_eeprom(self):
@@ -2264,7 +2306,7 @@ class Servo(object):
         return 0.0112*self._eep_read_single(EEP_OVERLOAD_DETECTION_PERIOD)
     @overload_detection_period_eeprom.setter
     def overload_detection_period_eeprom(self, value):
-        self._check_range(value, 0.0112*RANGE_OVERLOAD_DETECTION_PERIOD)
+        self._check_range_coef(value, RANGE_OVERLOAD_DETECTION_PERIOD, 0.0112)
         self._eep_write(EEP_OVERLOAD_DETECTION_PERIOD, int(round(value/0.0112)))
 # 38
     @property
@@ -2404,7 +2446,7 @@ class Servo(object):
         :getter: Get servo control mode
         :setter: Set servo control mode
         :type: int
-        
+
         Three control mode values are supported:
           - :ref:`MODE_FREE <mode-constants>`:
             In this mode, the servo shaft is freely movable.
@@ -2430,7 +2472,7 @@ class Servo(object):
     def set_absolute_position_origin(self, option = 'middle'):
         """
         Set the absolute position origin from the current position.
-        
+
         :param string option: Only 5 different options are permited:
 
           - ``'min'``: current position becomes the min absolute position (current absolute position becomes 0)
@@ -2449,12 +2491,12 @@ class Servo(object):
     def reset_absolute_position_origin(self):
         """
         Reset the absolute position origin to its initial state.
-        
+
         .. note::
             This action is permited only with servo models DRS-0402 and DRS-0602.
         """
         if self._magnetic_encoder:
-            self._ram_write(RAM_AUX_1, 1)   
+            self._ram_write(RAM_AUX_1, 1)
         else:
             raise PyHerkuleX_Exception("Can't reset absolute position origin for this servo model.")
 # 51
@@ -2463,7 +2505,7 @@ class Servo(object):
         """
         :getter: Get speed control mode state
         :type:   bool
-        
+
         Servo.mode value is MODE_CONTROL and continuous rotation is in progress if speed mode is ``True``.
         """
         return bool(self._ram_read_single(RAM_CURRENT_CONTROL_MODE))
@@ -2511,7 +2553,7 @@ class Servo(object):
                                position to desired position.
 
         :param int led: LED color among the supported values given as :ref:`LED color constants <led-constants>`.
-        
+
         :param bool velocity_override: VOR is either ``True`` to enable it or ``False`` to disable it (if the servo model allows to disable VOR)
 
         .. note::
@@ -2531,12 +2573,12 @@ class Servo(object):
                          from current position.
 
         :param int led: LED color among the supported values given as :ref:`LED color constants <led-constants>`.
-        
+
         :param bool velocity_override: either ``True`` to enable it or ``False`` to disable VOR (if the servo model allows it)
 
         .. note::
             Control mode must be enabled before sending any control instruction to the servo.
-        """        
+        """
         position = int(round(increment+self.position))
         self._write(REQ_I_JOG, position&0xFF, position>>8&0xFF, (bool(velocity_override)^1)<<6|(led&0x7)<<2, self._id, int(round(time/0.0112))&0xFF)
     @property
@@ -2559,7 +2601,7 @@ class Servo(object):
                            position to the desired position.
 
         :param int led: LED color among the supported values given as :ref:`LED color constants <led-constants>`.
-        
+
         :param bool velocity_override: VOR is either ``True`` to enable it or ``False`` to disable it (if the servo model allows to disable VOR)
 
         .. note::
@@ -2578,7 +2620,7 @@ class Servo(object):
                          from current position.
 
         :param int led: LED color among the supported values given as :ref:`LED color constants <led-constants>`.
-        
+
         :param bool velocity_override: either ``True`` to enable it or ``False`` to disable VOR (if the servo model allows it)
 
         .. note::
@@ -2791,7 +2833,7 @@ class Servo(object):
         """
         :getter: Get current pulse width modulation value.
         :type:   int from -1023 to 1023
-        
+
         .. tip::
             PWM can be considered as a torque like quantity.
         """
