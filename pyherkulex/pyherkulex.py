@@ -877,7 +877,7 @@ class Servo(object):
         """
         Check if the given value is in the permited range multiplied by a given coefficient.
         """
-        self._check_range(self, value, [coef*i for i in rng])
+        self._check_range(value, [coef*i for i in rng])
 
     def _position_to_angle(self, position):
         """
