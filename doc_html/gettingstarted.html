@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="" >
+<html lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -13,6 +13,7 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
 
   
   
@@ -27,26 +28,16 @@
   <![endif]-->
   
     
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'./',
-              VERSION:'1.1.0',
-              LANGUAGE:'',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: ''
-          };
-      </script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
     <link rel="next" title="Servo class" href="servo.html" />
     <link rel="prev" title="pyHerkuleX" href="index.html" /> 
@@ -105,7 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Get started</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Get started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#download-and-installation">Download and installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#simple-usage-example">Simple usage example</a></li>
@@ -190,15 +181,15 @@
 <div class="section" id="requirements">
 <span id="getting-started-1"></span><h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="https://python.org/">Python</a> 2.7 or higher, including Python 3.4 and higher</li>
-<li><a class="reference external" href="https://github.com/pyserial/pyserial">pySerial</a> 2.6 or higher</li>
+<li><p><a class="reference external" href="https://python.org/">Python</a> 2.7 or higher, including Python 3.4 and higher</p></li>
+<li><p><a class="reference external" href="https://github.com/pyserial/pyserial">pySerial</a> 2.6 or higher</p></li>
 </ul>
 </div>
 <div class="section" id="download-and-installation">
 <span id="getting-started-2"></span><h2>Download and installation<a class="headerlink" href="#download-and-installation" title="Permalink to this headline">¶</a></h2>
 <p>Download a copy of the latest public release (current version: 1.1.0):</p>
 <p><a class="reference external" href="https://framagit.org/guenhael/pyherkulex/-/archive/master/pyherkulex-master.zip"><img alt="download project archive" src="_images/zip.png" /></a> <a class="reference external" href="https://framagit.org/guenhael/pyherkulex/-/archive/master/pyherkulex-master.zip">pyherkulex-master.zip</a></p>
-<p>Unzip and run <tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">build</span> <span class="pre">install</span></tt> from the source
+<p>Unzip and run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">build</span> <span class="pre">install</span></code> from the source
 directory to install pyherkulex library on your machine.
 Or simply copy-past pyherkulex folder in the working directory of your project.</p>
 </div>
@@ -207,19 +198,19 @@ Or simply copy-past pyherkulex folder in the working directory of your project.<
 <p>This simple example blinks LED in blue, in 1 second interval,
 of all HerkuleX servos connected to default serial port
 with default baudrate 115200.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Blinks LED in blue of all connected HerkuleX servos.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">pyherkulex</span> <span class="kn">as</span> <span class="nn">hx</span>
+<span class="kn">import</span> <span class="nn">pyherkulex</span> <span class="k">as</span> <span class="nn">hx</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
 <span class="n">broadcast_srv</span> <span class="o">=</span> <span class="n">hx</span><span class="o">.</span><span class="n">Servo</span><span class="p">()</span>
 <span class="n">broadcast_srv</span><span class="o">.</span><span class="n">reboot</span><span class="p">()</span>
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="n">broadcast_srv</span><span class="o">.</span><span class="n">led</span> <span class="o">=</span> <span class="n">hx</span><span class="o">.</span><span class="n">LED_BLUE</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">broadcast_srv</span><span class="o">.</span><span class="n">led</span> <span class="o">=</span> <span class="n">hx</span><span class="o">.</span><span class="n">LED_OFF</span>
@@ -227,14 +218,14 @@ with default baudrate 115200.</p>
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<ul class="last simple">
-<li>Before running this test, make sure each servos has its own ID,
+<p class="admonition-title">Tip</p>
+<ul class="simple">
+<li><p>Before running this test, make sure each servos has its own ID,
 different from any other connected servo to avoid any communication error,
-or simply run this test with only one single servo connected to the serial bus.</li>
-<li>Also make sure no servo has a specific baudrate value
-different than the default (factory) value 115200.</li>
-<li>Finally, check servo status in case of LED blinking red (alarm).</li>
+or simply run this test with only one single servo connected to the serial bus.</p></li>
+<li><p>Also make sure no servo has a specific baudrate value
+different than the default (factory) value 115200.</p></li>
+<li><p>Finally, check servo status in case of LED blinking red (alarm).</p></li>
 </ul>
 </div>
 </div>
@@ -262,9 +253,9 @@ different than the default (factory) value 115200.</li>
     <p>
         
         
-        &copy; <a href="copyright.html">Copyright</a> 2020, Guenhael LE QUILLIEC
+        &copy; <a href="copyright.html">Copyright</a> 2022, Guenhael LE QUILLIEC
       <span class="lastupdated">
-        Last updated on Oct 19, 2020.
+        Last updated on Oct 19, 2022.
       </span>
 
     </p>

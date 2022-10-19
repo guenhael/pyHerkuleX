@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="" >
+<html lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -13,6 +13,7 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
 
   
   
@@ -27,26 +28,16 @@
   <![endif]-->
   
     
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'./',
-              VERSION:'1.1.0',
-              LANGUAGE:'',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: ''
-          };
-      </script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
     <link rel="next" title="Exception class" href="exception.html" />
     <link rel="prev" title="Various functions" href="functions.html" /> 
@@ -110,7 +101,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="servo.html">Servo class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Constants</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Constants</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#servo-mode-constants">Servo mode constants</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#position-control-and-speed-control-constants">Position control and speed control constants</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#led-color-constants">LED color constants</a></li>
@@ -191,127 +182,127 @@
 <h1>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="servo-mode-constants">
 <span id="mode-constants"></span><h2>Servo mode constants<a class="headerlink" href="#servo-mode-constants" title="Permalink to this headline">¶</a></h2>
-<dl class="data">
+<dl class="py data">
 <dt id="MODE_FREE">
-<tt class="descname">MODE_FREE</tt><a class="headerlink" href="#MODE_FREE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">MODE_FREE</code><a class="headerlink" href="#MODE_FREE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Servo freely movable.</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="MODE_BRAKE">
-<tt class="descname">MODE_BRAKE</tt><a class="headerlink" href="#MODE_BRAKE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">MODE_BRAKE</code><a class="headerlink" href="#MODE_BRAKE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prevent motion of the servo.</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="MODE_CONTROL">
-<tt class="descname">MODE_CONTROL</tt><a class="headerlink" href="#MODE_CONTROL" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">MODE_CONTROL</code><a class="headerlink" href="#MODE_CONTROL" title="Permalink to this definition">¶</a></dt>
 <dd><p>Control instructions are permited.</p>
 </dd></dl>
 
 </div>
 <div class="section" id="position-control-and-speed-control-constants">
 <span id="control-constants"></span><h2>Position control and speed control constants<a class="headerlink" href="#position-control-and-speed-control-constants" title="Permalink to this headline">¶</a></h2>
-<dl class="data">
+<dl class="py data">
 <dt id="CONTROL_POSITION_DEGREE">
-<tt class="descname">CONTROL_POSITION_DEGREE</tt><a class="headerlink" href="#CONTROL_POSITION_DEGREE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CONTROL_POSITION_DEGREE</code><a class="headerlink" href="#CONTROL_POSITION_DEGREE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Position mode in degree.</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="CONTROL_POSITION_STEP">
-<tt class="descname">CONTROL_POSITION_STEP</tt><a class="headerlink" href="#CONTROL_POSITION_STEP" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CONTROL_POSITION_STEP</code><a class="headerlink" href="#CONTROL_POSITION_STEP" title="Permalink to this definition">¶</a></dt>
 <dd><p>Position mode in step unit.</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="CONTROL_SPEED_DEGREE">
-<tt class="descname">CONTROL_SPEED_DEGREE</tt><a class="headerlink" href="#CONTROL_SPEED_DEGREE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CONTROL_SPEED_DEGREE</code><a class="headerlink" href="#CONTROL_SPEED_DEGREE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Speed mode in degree/second.</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="CONTROL_SPEED_STEP">
-<tt class="descname">CONTROL_SPEED_STEP</tt><a class="headerlink" href="#CONTROL_SPEED_STEP" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CONTROL_SPEED_STEP</code><a class="headerlink" href="#CONTROL_SPEED_STEP" title="Permalink to this definition">¶</a></dt>
 <dd><p>Speed mode in step/second.</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="CONTROL_SPEED_NATIVE">
-<tt class="descname">CONTROL_SPEED_NATIVE</tt><a class="headerlink" href="#CONTROL_SPEED_NATIVE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CONTROL_SPEED_NATIVE</code><a class="headerlink" href="#CONTROL_SPEED_NATIVE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Speed mode in native unit.</p>
 </dd></dl>
 
 </div>
 <div class="section" id="led-color-constants">
 <span id="led-constants"></span><h2>LED color constants<a class="headerlink" href="#led-color-constants" title="Permalink to this headline">¶</a></h2>
-<dl class="data">
+<dl class="py data">
 <dt id="LED_OFF">
-<tt class="descname">LED_OFF</tt><a class="headerlink" href="#LED_OFF" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LED_OFF</code><a class="headerlink" href="#LED_OFF" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="LED_GREEN">
-<tt class="descname">LED_GREEN</tt><a class="headerlink" href="#LED_GREEN" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LED_GREEN</code><a class="headerlink" href="#LED_GREEN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="LED_BLUE">
-<tt class="descname">LED_BLUE</tt><a class="headerlink" href="#LED_BLUE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LED_BLUE</code><a class="headerlink" href="#LED_BLUE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="LED_CYAN">
-<tt class="descname">LED_CYAN</tt><a class="headerlink" href="#LED_CYAN" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LED_CYAN</code><a class="headerlink" href="#LED_CYAN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="LED_RED">
-<tt class="descname">LED_RED</tt><a class="headerlink" href="#LED_RED" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LED_RED</code><a class="headerlink" href="#LED_RED" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="LED_ORANGE">
-<tt class="descname">LED_ORANGE</tt><a class="headerlink" href="#LED_ORANGE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LED_ORANGE</code><a class="headerlink" href="#LED_ORANGE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="LED_VIOLET">
-<tt class="descname">LED_VIOLET</tt><a class="headerlink" href="#LED_VIOLET" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LED_VIOLET</code><a class="headerlink" href="#LED_VIOLET" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="LED_WHITE">
-<tt class="descname">LED_WHITE</tt><a class="headerlink" href="#LED_WHITE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LED_WHITE</code><a class="headerlink" href="#LED_WHITE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
 <div class="section" id="acknowlegement-policy-constants">
 <span id="ack-constants"></span><h2>Acknowlegement policy constants<a class="headerlink" href="#acknowlegement-policy-constants" title="Permalink to this headline">¶</a></h2>
-<dl class="data">
+<dl class="py data">
 <dt id="ACK_MUTE">
-<tt class="descname">ACK_MUTE</tt><a class="headerlink" href="#ACK_MUTE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ACK_MUTE</code><a class="headerlink" href="#ACK_MUTE" title="Permalink to this definition">¶</a></dt>
 <dd><p>No reply to any request except status requests.</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="ACK_READ">
-<tt class="descname">ACK_READ</tt><a class="headerlink" href="#ACK_READ" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ACK_READ</code><a class="headerlink" href="#ACK_READ" title="Permalink to this definition">¶</a></dt>
 <dd><p>Only reply to read (getter) and status requests.</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="ACK_ALL">
-<tt class="descname">ACK_ALL</tt><a class="headerlink" href="#ACK_ALL" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ACK_ALL</code><a class="headerlink" href="#ACK_ALL" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reply to all requests.</p>
 </dd></dl>
 
 </div>
 <div class="section" id="other-provided-constants">
 <span id="other-constants"></span><h2>Other provided constants<a class="headerlink" href="#other-provided-constants" title="Permalink to this headline">¶</a></h2>
-<dl class="data">
+<dl class="py data">
 <dt id="BAUDRATES">
-<tt class="descname">BAUDRATES</tt><a class="headerlink" href="#BAUDRATES" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">BAUDRATES</code><a class="headerlink" href="#BAUDRATES" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tuple of baudrates supported by the various HerkuleX servos models.</p>
 </dd></dl>
 
@@ -340,9 +331,9 @@
     <p>
         
         
-        &copy; <a href="copyright.html">Copyright</a> 2020, Guenhael LE QUILLIEC
+        &copy; <a href="copyright.html">Copyright</a> 2022, Guenhael LE QUILLIEC
       <span class="lastupdated">
-        Last updated on Oct 19, 2020.
+        Last updated on Oct 19, 2022.
       </span>
 
     </p>

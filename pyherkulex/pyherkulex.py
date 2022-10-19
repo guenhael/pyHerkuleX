@@ -22,7 +22,7 @@ To obtain permission to use this code for commercial purposes,
 contact Guenhael LE QUILLIEC (mailto:contact@guenhael.com).
 
 .. Online documentation: https://guenhael.frama.io/pyherkulex/
-.. Lattest release archive: https://framagit.org/guenhael/pyherkulex/-/archive/master/pyherkulex-master.zip
+.. Latest release archive: https://framagit.org/guenhael/pyherkulex/-/archive/master/pyherkulex-master.zip
 """
 
 # Python 3 compatibility
@@ -44,7 +44,7 @@ import serial as srl
 import platform
 import glob
 
-# REQuest and ACKnowledgement packet commands
+# REQuest and Acknowledgment packet commands
 REQ_EEP_WRITE = 0x01 ; ACK_EEP_WRITE = 0x41
 REQ_EEP_READ  = 0x02 ; ACK_EEP_READ  = 0x42
 REQ_RAM_WRITE = 0x03 ; ACK_RAM_WRITE = 0x43
@@ -230,7 +230,7 @@ xor = lambda a,b:a^b
 def _closest(value, tpl):
     """
     Find closest value index in a sorted tuple
-    (We don't use external tool such as numpy to avoid dependences)
+    (We don't use external tool such as Numpy to avoid dependencies)
     """
     value = float(value)
     if value <= tpl[0]:
@@ -342,7 +342,7 @@ def find(number = None, port = None, baudrate = BAUDRATES, timeout = 0.05, fast 
 
     :param float timeout: Set serial read timeout value.
 
-    :param bool fast: For each baude rate, incremental scanning is
+    :param bool fast: For each baud rate, incremental scanning is
                       performed on all possible IDs separately only if any signal is
                       received to a prior call broadcasted to all servo IDs together.
 
@@ -481,9 +481,9 @@ def independent_control(*instructions):
         Each servo must have its control mode enabled before sending control instructions.
 
     :example:
-        Sending independant control instructions to two servos with respective IDs 0x01 and 0x02.
+        Sending independent control instructions to two servos with respective IDs 0x01 and 0x02.
         The first servo has 1.5 second to reach a prescribed position set to -10 degree and its LED switched off.
-        The second servo has 2.0 second to reach a prescribed speed set to 3.5 degree/second and its LED lighting bleu.
+        The second servo has 2.0 second to reach a prescribed speed set to 3.5 degree/second and its LED lighting blue.
 
         .. code-block:: python
 
@@ -557,13 +557,13 @@ def simultaneous_control(time, *instructions):
             - *control mode* (optional), among the :ref:`position and speed control constants <control-constants>` (default is :obj:`pyherkulex.CONTROL_POSITION_DEGREE`)
             - *led color* (optional), integer among the :ref:`LED color constants <led-constants>` (default is :obj:`pyherkulex.LED_OFF`)
             - *stop* (optional), either ``True`` to stop servo at current position or ``False`` (default) to continue control instructions
-            - *velocity overide* - VOR (optional), either ``True`` (default) to enable VOR or ``False`` to disable VOR (if the servo model allows to disable VOR)
+            - *velocity override* - VOR (optional), either ``True`` (default) to enable VOR or ``False`` to disable VOR (if the servo model allows to disable VOR)
 
     .. note::
         Each servo must have its control mode enabled before sending control instructions.
 
     :example:
-        Sending simulaneous instructions to two servos with respective IDs 0x01 and 0x02.
+        Sending simultaneous instructions to two servos with respective IDs 0x01 and 0x02.
         The first servo has its position set to -10 degree with its LED switched off.
         The second servo has its speed set to 3.5 degree/second with its LED lighting green.
         Both servos have the same operating goal time of 1.5 second.
@@ -620,7 +620,7 @@ def simultaneous_control(time, *instructions):
     try:
         instructions[0][0].serial.write(HEADER + struct.pack(str(len_data+6)+'B',*data))
     except:
-        raise PyHerkuleX_Exception("Simultaneous constrol failed")
+        raise PyHerkuleX_Exception("Simultaneous control failed")
 
 class PyHerkuleX_Exception(Exception):
     """
@@ -673,7 +673,7 @@ class Servo(object):
             srv1 = hx.Servo(0x01)
 
             # Check first if there is any error status
-            if srv1.satus[0]:
+            if srv1.status[0]:
                 # Print status and raise an exception
                 srv1.print_status()
                 raise Exception('Please check your HerkuleX servo error status.')
@@ -784,7 +784,7 @@ class Servo(object):
             if data[2] not in (REQ_EEP_READ, REQ_RAM_READ, REQ_STAT) and self._id != BROADCASTING_ID:
                 len0 = struct.unpack('1B',self.serial.read(3)[2:3])[0]-3
                 if struct.unpack('1B',self.serial.read(len0)[1:2])[0] != data[2]+0x40:
-                    raise PyHerkuleX_Exception("Wrong acknowledgement with servo ID: 0x%02X"%self._id)
+                    raise PyHerkuleX_Exception("Wrong acknowledgment with servo ID: 0x%02X"%self._id)
 
     def _ram_read(self, register, length = 2):
         """
@@ -797,7 +797,7 @@ class Servo(object):
             if self._id == BROADCASTING_ID:
                 raise PyHerkuleX_Exception("Can not get any reply when using broadcast ID")
             elif self._ack_policy == ACK_MUTE:
-                raise PyHerkuleX_Exception("Acknowledgement policy does not allow to communicate with servo ID: 0x%02X"%self._id+". Change acknowledgement policy and try again.")
+                raise PyHerkuleX_Exception("Acknowledgment policy does not allow to communicate with servo ID: 0x%02X"%self._id+". Change acknowledgment policy and try again.")
             else:
                 raise PyHerkuleX_Exception("Could not communicate with servo ID: 0x%02X"%self._id)
 
@@ -812,7 +812,7 @@ class Servo(object):
             if self._id == BROADCASTING_ID:
                 raise PyHerkuleX_Exception("Can not get any reply when using broadcast ID")
             elif self._ack_policy == ACK_MUTE:
-                raise PyHerkuleX_Exception("Acknowledgement policy does not allow to communicate with servo ID: 0x%02X"%self._id+". Change acknowledgement policy and try again.")
+                raise PyHerkuleX_Exception("Acknowledgment policy does not allow to communicate with servo ID: 0x%02X"%self._id+". Change acknowledgment policy and try again.")
             else:
                 raise PyHerkuleX_Exception("Could not communicate with servo ID: 0x%02X"%self._id)
 
@@ -833,7 +833,7 @@ class Servo(object):
             if self._id == BROADCASTING_ID:
                 raise PyHerkuleX_Exception("Can not get any reply when using broadcast ID")
             elif self._ack_policy == ACK_MUTE:
-                raise PyHerkuleX_Exception("Acknowledgement policy does not allow to communicate with servo ID: 0x%02X"%self._id+". Change acknowledgement policy and try again.")
+                raise PyHerkuleX_Exception("Acknowledgment policy does not allow to communicate with servo ID: 0x%02X"%self._id+". Change acknowledgment policy and try again.")
             else:
                 raise PyHerkuleX_Exception("Could not communicate with servo ID: 0x%02X"%self._id)
 
@@ -848,7 +848,7 @@ class Servo(object):
             if self._id == BROADCASTING_ID:
                 raise PyHerkuleX_Exception("Can not get any reply when using broadcast ID")
             elif self._ack_policy == ACK_MUTE:
-                raise PyHerkuleX_Exception("Acknowledgement policy does not allow to communicate with servo ID: 0x%02X"%self._id+". Change acknowledgement policy and try again.")
+                raise PyHerkuleX_Exception("Acknowledgment policy does not allow to communicate with servo ID: 0x%02X"%self._id+". Change acknowledgment policy and try again.")
             else:
                 raise PyHerkuleX_Exception("Could not communicate with servo ID: 0x%02X"%self._id)
 
@@ -866,7 +866,7 @@ class Servo(object):
 
     def _check_range(self, value, rng):
         """
-        Check if the given value is in the permited range.
+        Check if the given value is in the permitted range.
         """
         if value < rng[0]:
             raise PyHerkuleX_Exception("Attempt to set a value ("+str(value)+") bellow the minimal value ("+str(rng[0])+") to servo ID: 0x%02X"%self._id)
@@ -875,7 +875,7 @@ class Servo(object):
 
     def _check_range_coef(self, value, rng, coef):
         """
-        Check if the given value is in the permited range multiplied by a given coefficient.
+        Check if the given value is in the permitted range multiplied by a given coefficient.
         """
         self._check_range(value, [coef*i for i in rng])
 
@@ -1038,7 +1038,7 @@ class Servo(object):
         :setter: Manually set status
         :type: tuple of two int values (error status code, detailed status code)
         """
-        # Always reply regadless of acknowledgement policy.
+        # Always reply regadless of acknowledgment policy.
         if self._id != BROADCASTING_ID:
             self._write(REQ_STAT)
             try:
@@ -1099,7 +1099,7 @@ class Servo(object):
         """
         :getter: Get servo ID
         :setter: Set servo ID
-        :type:   int from 0 to 254 (0xFE), with 254 corresponding to broadcat ID.
+        :type:   int from 0 to 254 (0xFE), with 254 corresponding to broadcast ID.
         """
         return self._id
     @id.setter
@@ -1170,8 +1170,8 @@ class Servo(object):
     @property
     def ack_policy(self):
         """
-        :getter: Get aknowlegement policy
-        :setter: Set aknowlegement policy
+        :getter: Get acknowledgment policy
+        :setter: Set acknowledgment policy
         :type:   int
 
         Three acknowlegement policy values are supported:
@@ -1189,7 +1189,7 @@ class Servo(object):
     def ack_policy(self, value):
         value = int(value)
         if not value in (ACK_MUTE, ACK_READ, ACK_ALL):
-            raise PyHerkuleX_Exception("Attempt to set a wrong value of aknowlegement policy to servo ID: 0x%02X"%self._id)
+            raise PyHerkuleX_Exception("Attempt to set a wrong value of acknowledgment policy to servo ID: 0x%02X"%self._id)
         # Update ack_policy variable
         self._ack_policy = value
         # Set the new ack_policy
@@ -1197,8 +1197,8 @@ class Servo(object):
     @property
     def ack_policy_eeprom(self):
         """
-        :getter: Get saved aknowlegement policy from EEPROM
-        :setter: Save aknowlegement policy in EEPROM
+        :getter: Get saved acknowledgment policy from EEPROM
+        :setter: Save acknowledgment policy in EEPROM
         :type:   int
         """
         return self._eep_read_single(EEP_ACK_POLICY)
@@ -1206,7 +1206,7 @@ class Servo(object):
     def ack_policy_eeprom(self, value):
         value = int(value)
         if not value in (ACK_MUTE, ACK_READ, ACK_ALL):
-            raise PyHerkuleX_Exception("Attempt to save a wrong value of aknowlegement policy to servo ID: 0x%02X"%self._id)
+            raise PyHerkuleX_Exception("Attempt to save a wrong value of acknowledgment policy to servo ID: 0x%02X"%self._id)
         self._eep_write(EEP_ACK_POLICY, value)
 # 9
     @property
@@ -1224,8 +1224,8 @@ class Servo(object):
     @property
     def voltage_alarm_led_policy_eeprom(self):
         """
-        :getter: Get saved voltage alarm led policy from eeprom
-        :setter: Save voltage alarm led policy in eeprom
+        :getter: Get saved voltage alarm led policy from EEPROM
+        :setter: Save voltage alarm led policy in EEPROM
         :type:   bool
         """
         return bool(self._eep_read_single(EEP_ALARM_LED_POLICY)&0x01)
@@ -1249,8 +1249,8 @@ class Servo(object):
     @property
     def position_alarm_led_policy_eeprom(self):
         """
-        :getter: Get saved position alarm led policy from eeprom
-        :setter: Save position alarm led policy in eeprom
+        :getter: Get saved position alarm led policy from EEPROM
+        :setter: Save position alarm led policy in EEPROM
         :type:   bool
         """
         return bool(self._eep_read_single(EEP_ALARM_LED_POLICY)&0x02)
@@ -1274,8 +1274,8 @@ class Servo(object):
     @property
     def packet_alarm_led_policy_eeprom(self):
         """
-        :getter: Get saved packet alarm led policy from eeprom
-        :setter: Save packet alarm led policy in eeprom
+        :getter: Get saved packet alarm led policy from EEPROM
+        :setter: Save packet alarm led policy in EEPROM
         :type:   bool
         """
         return bool(self._eep_read_single(EEP_ALARM_LED_POLICY)&0x04)
@@ -1299,8 +1299,8 @@ class Servo(object):
     @property
     def overload_alarm_led_policy_eeprom(self):
         """
-        :getter: Get saved overload alarm led policy from eeprom
-        :setter: Save overload alarm led policy in eeprom
+        :getter: Get saved overload alarm led policy from EEPROM
+        :setter: Save overload alarm led policy in EEPROM
         :type:   bool
         """
         return bool(self._eep_read_single(EEP_ALARM_LED_POLICY)&0x08)
@@ -1324,8 +1324,8 @@ class Servo(object):
     @property
     def driver_alarm_led_policy_eeprom(self):
         """
-        :getter: Get saved driver alarm led policy from eeprom
-        :setter: Save driver alarm led policy in eeprom
+        :getter: Get saved driver alarm led policy from EEPROM
+        :setter: Save driver alarm led policy in EEPROM
         :type:   bool
         """
         return bool(self._eep_read_single(EEP_ALARM_LED_POLICY)&0x10)
@@ -1349,8 +1349,8 @@ class Servo(object):
     @property
     def register_alarm_led_policy_eeprom(self):
         """
-        :getter: Get saved register alarm led policy from eeprom
-        :setter: Save register alarm led policy in eeprom
+        :getter: Get saved register alarm led policy from EEPROM
+        :setter: Save register alarm led policy in EEPROM
         :type:   bool
         """
         return bool(self._eep_read_single(EEP_ALARM_LED_POLICY)&0x20)
@@ -1374,8 +1374,8 @@ class Servo(object):
     @property
     def voltage_mode_free_policy_eeprom(self):
         """
-        :getter: Get saved voltage mode free policy from eeprom
-        :setter: Save voltage mode free policy in eeprom
+        :getter: Get saved voltage mode free policy from EEPROM
+        :setter: Save voltage mode free policy in EEPROM
         :type:   bool
         """
         return bool(self._eep_read_single(EEP_TORQUE_POLICY)&0x01)
@@ -1399,8 +1399,8 @@ class Servo(object):
     @property
     def position_mode_free_policy_eeprom(self):
         """
-        :getter: Get saved position mode free policy from eeprom
-        :setter: Save position mode free policy in eeprom
+        :getter: Get saved position mode free policy from EEPROM
+        :setter: Save position mode free policy in EEPROM
         :type:   bool
         """
         return bool(self._eep_read_single(EEP_TORQUE_POLICY)&0x02)
@@ -1424,8 +1424,8 @@ class Servo(object):
     @property
     def packet_mode_free_policy_eeprom(self):
         """
-        :getter: Get saved packet mode free policy from eeprom
-        :setter: Save packet mode free policy in eeprom
+        :getter: Get saved packet mode free policy from EEPROM
+        :setter: Save packet mode free policy in EEPROM
         :type:   bool
         """
         return bool(self._eep_read_single(EEP_TORQUE_POLICY)&0x04)
@@ -1449,8 +1449,8 @@ class Servo(object):
     @property
     def overload_mode_free_policy_eeprom(self):
         """
-        :getter: Get saved overload mode free policy from eeprom
-        :setter: Save overload mode free policy in eeprom
+        :getter: Get saved overload mode free policy from EEPROM
+        :setter: Save overload mode free policy in EEPROM
         :type:   bool
         """
         return bool(self._eep_read_single(EEP_TORQUE_POLICY)&0x08)
@@ -1474,8 +1474,8 @@ class Servo(object):
     @property
     def driver_mode_free_policy_eeprom(self):
         """
-        :getter: Get saved driver mode free policy from eeprom
-        :setter: Save driver mode free policy in eeprom
+        :getter: Get saved driver mode free policy from EEPROM
+        :setter: Save driver mode free policy in EEPROM
         :type:   bool
         """
         return bool(self._eep_read_single(EEP_TORQUE_POLICY)&0x10)
@@ -1499,8 +1499,8 @@ class Servo(object):
     @property
     def register_mode_free_policy_eeprom(self):
         """
-        :getter: Get saved register mode free policy from eeprom
-        :setter: Save register mode free policy in eeprom
+        :getter: Get saved register mode free policy from EEPROM
+        :setter: Save register mode free policy in EEPROM
         :type:   bool
         """
         return bool(self._eep_read_single(EEP_TORQUE_POLICY)&0x20)
@@ -1734,7 +1734,7 @@ class Servo(object):
         :setter: Set dead zone
         :type:   int
 
-        The dead zone value corresponds to the permited difference (in step)
+        The dead zone value corresponds to the permitted difference (in step)
         between goal position and actual position.
 
         If the difference (error) is less than the dead zone value,
@@ -1932,7 +1932,7 @@ class Servo(object):
         Overload activates when external load is greater than
         PWM overload threshold.
         Overload never activates when the PWM overload threshold
-        is set to its maximum permited value.
+        is set to its maximum permitted value.
         """
         data = self._ram_read(RAM_OVERLOAD_PWM_THRESHOLD)
         return data[1]<<8|data[0]
@@ -2373,9 +2373,9 @@ class Servo(object):
         :setter: Set calibration difference
         :type:   float
 
-        Used to calibrate newtral point of the calibrated position
+        Used to calibrate neutral point of the calibrated position
         (calibrated position = absolute position - calibration difference).
-        It is generaly used to make adjustments and compensate assembly
+        It is generally used to make adjustments and compensate assembly
         variations.
         """
         if self._model_4or6:
@@ -2457,7 +2457,7 @@ class Servo(object):
             Position control and speed control will not work.
             Set MODE_CONTROL before that.
           - :ref:`MODE_CONTROL <mode-constants>`:
-            In this mode, control instructions are permited.
+            In this mode, control instructions are permitted.
         """
         return self._ram_read_single(RAM_TORQUE_CONTROL)
     @mode.setter
@@ -2473,7 +2473,7 @@ class Servo(object):
         """
         Set the absolute position origin from the current position.
 
-        :param string option: Only 5 different options are permited:
+        :param string option: Only 5 different options are permitted:
 
           - ``'min'``: current position becomes the min absolute position (current absolute position becomes 0)
           - ``'half_forward'``: current position plus 180° becomes the middle absolute position (current absolute position becomes 9903)
@@ -2482,7 +2482,7 @@ class Servo(object):
           - ``'max'``: current position becomes the max absolute position (current absolute position becomes 32767)
 
         .. note::
-            This action is permited only with servo models DRS-0402 and DRS-0602.
+            This action is permitted only with servo models DRS-0402 and DRS-0602.
         """
         if self._magnetic_encoder:
             self._ram_write(RAM_AUX_1, {'min':2, 'half_forward':3, 'middle':4, 'half_backward':5, 'max':6}[option])
@@ -2493,7 +2493,7 @@ class Servo(object):
         Reset the absolute position origin to its initial state.
 
         .. note::
-            This action is permited only with servo models DRS-0402 and DRS-0602.
+            This action is permitted only with servo models DRS-0402 and DRS-0602.
         """
         if self._magnetic_encoder:
             self._ram_write(RAM_AUX_1, 1)
