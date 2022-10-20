@@ -13,5 +13,5 @@ setup(
     long_description=open('README.rst').read(),
     keywords="herkulex serial hardware RS232 communication protocol servo motor",
     license='GNU General Public License - 3.0-or-later',
-    version='1.0.0',
+    version='1.1.0',
 )
