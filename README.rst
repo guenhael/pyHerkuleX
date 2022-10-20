@@ -111,13 +111,14 @@ with default baudrate 115200.
    :alt: License: GPL v3
    :target: https://www.gnu.org/licenses/gpl-3.0
 
-.. |pyHerkuleX| image:: doc_html/_images/pyherkulex_logo_small.png
+.. |pyHerkuleX| image:: doc_html/_static/git_images/pyherkulex_logo_small.png
+   :alt: pyHerkuleX logo
 
-.. |documentation-ico| image:: doc_html/_images/documentation.png
+.. |documentation-ico| image:: doc_html/_static/git_images/documentation.png
    :alt: online documentation
    :target: https://guenhael.frama.io/pyherkulex/
 
-.. |zip-ico| image:: doc_html/_images/zip.png
+.. |zip-ico| image:: doc_html/_static/git_images/zip.png
    :alt: download project archive
    :target: https://framagit.org/guenhael/pyherkulex/-/archive/master/pyherkulex-master.zip
 
