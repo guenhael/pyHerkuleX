@@ -3,7 +3,7 @@
 
 """
 pyHerkuleX - smart HerkuleX servo motors Python package
-Copyright (C)  2020  Guenhael LE QUILLIEC
+Copyright (C)  2022  Guenhael LE QUILLIEC
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
